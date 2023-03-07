@@ -26,6 +26,8 @@ const getDefaultAddress = (params) =>
   request("/Usersinfo/getDefaultAddress", params, "POST");
 // 用户地址列表
 const getAddress = (params) => request("/Usersinfo/getAddress", params, "POST");
+// 用户地址详情
+const getAddressInfo = (params) => request("/Usersinfo/getAddressInfo", params, "POST");
 // 用户保存地址
 const saveAddress = (params) =>
   request("/Usersinfo/saveAddress", params, "POST");
@@ -72,6 +74,7 @@ module.exports = {
   getUsersinfo,
   getDefaultAddress,
   getAddress,
+  getAddressInfo,
   saveAddress,
   delAddress,
   createCart,

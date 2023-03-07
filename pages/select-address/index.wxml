@@ -5,16 +5,16 @@
     <van-cell
       custom-class="aaa"
       title="{{ item.name }} {{ item.telephone }}"
-      label="{{ item.address }}"
+      label="{{ item.addressInfo }}"
       bind:click="selectTap"
-      data-id="{{ item.id }}"
+      data-id="{{ item.address_id }}"
     ></van-cell>
   </view>
   <van-icon
     name="records"
     size="40rpx"
     bind:click="editAddess"
-    data-id="{{ item.id }}"
+    data-id="{{ item.address_id }}"
   ></van-icon>
 </view>
 
