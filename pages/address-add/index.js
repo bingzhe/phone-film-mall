@@ -1,7 +1,7 @@
 const WXAPI = require("apifm-wxapi");
 const AUTH = require("../../utils/auth");
 var address_parse = require("../../utils/address_parse");
-import { saveAddress, delAddress } from "../../api/api";
+import { saveAddress, delAddress, getAddressInfo } from "../../api/api";
 
 Page({
   data: {
@@ -216,18 +216,21 @@ Page({
       name: linkMan,
       address: address,
       telephone: mobile,
-      is_default: "true",
+      is_default: 1,
     };
 
     if (this.data.pIndex > 0) {
-      console.log(this.data.provinces[this.data.pIndex])
-      postData.province_name = this.data.provinces[this.data.pIndex].id;
+      console.log(this.data.provinces[this.data.pIndex]);
+      postData.province_name = this.data.provinces[this.data.pIndex].name;
+      postData.province_id = this.data.provinces[this.data.pIndex].id;
     }
     if (this.data.cIndex > 0) {
-      postData.city_name = this.data.cities[this.data.cIndex].id;
+      postData.city_name = this.data.cities[this.data.cIndex].name;
+      postData.city_id = this.data.cities[this.data.cIndex].id;
     }
     if (this.data.aIndex > 0) {
-      postData.area_name = this.data.areas[this.data.aIndex].id;
+      postData.area_name = this.data.areas[this.data.aIndex].name;
+      postData.area_id = this.data.areas[this.data.aIndex].id;
     }
 
     if (this.data.id) {
@@ -255,17 +258,22 @@ Page({
     const _this = this;
     if (e.id) {
       // 修改初始化数据库数据
-      const res = await WXAPI.addressDetail(wx.getStorageSync("token"), e.id);
-      if (res.code == 0) {
+      const res = await getAddressInfo({
+        token: wx.getStorageSync("token"),
+        address_id: e.id,
+      });
+
+      if (res.code == 200) {
         this.setData({
           id: e.id,
-          ...res.data.info,
+          linkMan: res.data.name,
+          address: res.data.address,
+          mobile: res.data.telephone,
         });
         this.provinces(
-          res.data.info.provinceId,
-          res.data.info.cityId,
-          res.data.info.districtId,
-          res.data.info.streetId
+          res.data.province_id,
+          res.data.city_id,
+          res.data.area_id
         );
       } else {
         wx.showModal({
@@ -287,7 +295,6 @@ Page({
   },
   async initFromClipboard(str) {
     address_parse.smart(str).then((res) => {
-      console.log("ggggggg", res);
       if (res.name && res.phone && res.address) {
         // 检测到收货地址
         this.setData({
@@ -314,7 +321,10 @@ Page({
       content: "确定要删除该收货地址吗？",
       success: function (res) {
         if (res.confirm) {
-          WXAPI.deleteAddress(wx.getStorageSync("token"), id).then(function () {
+          delAddress({
+            token: wx.getStorageSync("token"),
+            address_id: id,
+          }).then(function () {
             wx.navigateBack({});
           });
         } else {

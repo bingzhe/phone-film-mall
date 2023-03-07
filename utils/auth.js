@@ -31,10 +31,6 @@ async function bindSeller() {
 
 // 检测登录状态，返回 true / false
 async function checkHasLogined() {
-  //TODO 删除
-  // const tokenTODO =
-  //   "MDAwMDAwMDAwMJ2re5PEabyqnGFto5Goq5mAg6mcvZevn7-Qhs-5lonWmomGy7Chq2OHhHVlhrmrmIGEh6at0btnyX-g3Lu5cJaZiWLOqqHVqYeaiaqGqbuUgaqHZMq1onA";
-  // wx.setStorageSync("token", tokenTODO);
   const token = wx.getStorageSync("token");
   if (!token) {
     return false;
@@ -73,6 +69,17 @@ async function login(page) {
   const _this = this;
   wx.login({
     success: function (res) {
+      const code = res.code;
+
+      getOpenid({ code: code }).then(function (res) {
+        console.log("getOpenid", res);
+        wx.setStorageSync("token", res.data);
+
+        if (page) {
+          page.onShow();
+        }
+      });
+
       // const extConfigSync = wx.getExtConfigSync();
       // if (extConfigSync.subDomain) {
       //   WXAPI.wxappServiceLogin({
@@ -121,27 +128,28 @@ async function login(page) {
       //     }
       //   });
       // }
-      getOpenid({ code: res.code }).then(function (res) {
-        if (res.code == 10000) {
-          // 去注册
-          return;
-        }
-        if (res.code != 0) {
-          // 登录错误
-          wx.showModal({
-            title: "无法登录",
-            content: res.msg,
-            showCancel: false,
-          });
-          return;
-        }
-        wx.setStorageSync("token", res.data.token);
-        wx.setStorageSync("uid", res.data.uid);
-        _this.bindSeller();
-        if (page) {
-          page.onShow();
-        }
-      });
+
+      // getOpenid({ code: res.code }).then(function (res) {
+      //   if (res.code == 10000) {
+      //     // 去注册
+      //     return;
+      //   }
+      //   if (res.code != 0) {
+      //     // 登录错误
+      //     wx.showModal({
+      //       title: "无法登录",
+      //       content: res.msg,
+      //       showCancel: false,
+      //     });
+      //     return;
+      //   }
+      //   wx.setStorageSync("token", res.data.token);
+      //   wx.setStorageSync("uid", res.data.uid);
+      //   _this.bindSeller();
+      //   if (page) {
+      //     page.onShow();
+      //   }
+      // });
     },
   });
 }
@@ -157,14 +165,12 @@ async function authorize() {
   return new Promise((resolve, reject) => {
     wx.login({
       success: function (res) {
-        console.log("====================================");
-        console.log("authorize", res);
         const code = res.code;
-        let referrer = ""; // 推荐人
-        let referrer_storge = wx.getStorageSync("referrer");
-        if (referrer_storge) {
-          referrer = referrer_storge;
-        }
+        // let referrer = ""; // 推荐人
+        // let referrer_storge = wx.getStorageSync("referrer");
+        // if (referrer_storge) {
+        //   referrer = referrer_storge;
+        // }
         // 下面开始调用注册接口
         // const extConfigSync = wx.getExtConfigSync();
         // if (extConfigSync.subDomain) {
@@ -204,7 +210,7 @@ async function authorize() {
         // }
 
         getOpenid({ code: code }).then(function (res) {
-          console.log("=getOpenid=======", res);
+          console.log("getOpenid", res);
           wx.setStorageSync("token", res.data);
         });
       },
