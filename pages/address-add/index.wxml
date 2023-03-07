@@ -32,7 +32,7 @@
   type="number"
   clearable
 />
-<van-cell wx:if="{{ shipping_address_gps == '1' }}" title="选择定位" value="{{ addressData.latitude ? (addressData.latitude + ',' + addressData.longitude) : '请选择' }}" is-link bind:click="chooseLocation" />
+<!-- <van-cell wx:if="{{ shipping_address_gps == '1' }}" title="选择定位" value="{{ addressData.latitude ? (addressData.latitude + ',' + addressData.longitude) : '请选择' }}" is-link bind:click="chooseLocation" /> -->
 <van-field
   label="详细地址"
   model:value="{{ address }}"
