@@ -1,73 +1,57 @@
-const WXAPI = require('apifm-wxapi')
-const AUTH = require('../../utils/auth')
+const WXAPI = require("apifm-wxapi");
+const AUTH = require("../../utils/auth");
+import { getAddress } from "../../api/api";
 
-const app = getApp()
+const app = getApp();
 Page({
-  data: {
-
-  },
-  selectTap: function(e) {
+  data: {},
+  
+  selectTap: function (e) {
     console.log(e);
     var id = e.currentTarget.dataset.id;
     WXAPI.updateAddress({
-      token: wx.getStorageSync('token'),
+      token: wx.getStorageSync("token"),
       id: id,
-      isDefault: 'true'
-    }).then(function(res) {
-      wx.navigateBack({})
-    })
+      isDefault: "true",
+    }).then(function (res) {
+      wx.navigateBack({});
+    });
   },
 
-  addAddess: function() {
+  addAddess: function () {
     wx.navigateTo({
-      url: "/pages/address-add/index"
-    })
+      url: "/pages/address-add/index",
+    });
   },
 
-  editAddess: function(e) {
+  editAddess: function (e) {
     console.log(e);
-    
+
     wx.navigateTo({
-      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
-    })
+      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id,
+    });
   },
 
-  onLoad: function() {
-  },
-  onShow: function() {
-    AUTH.checkHasLogined().then(isLogined => {
+  onLoad: function () {},
+  onShow: function () {
+    AUTH.checkHasLogined().then((isLogined) => {
+      console.log("isLogined", isLogined);
       if (isLogined) {
         this.initShippingAddress();
       } else {
-        AUTH.login(this)
+        AUTH.login(this);
       }
-    })
+    });
   },
   async initShippingAddress() {
-    wx.showLoading({
-      title: '',
-    })
-    const res = await WXAPI.queryAddress(wx.getStorageSync('token'))
-    wx.hideLoading({
-      success: (res) => {},
-    })
-    if (res.code == 0) {
-      this.setData({
-        addressList: res.data
-      });
-    } else if (res.code == 700) {
-      this.setData({
-        addressList: null
-      });
-    } else {
-      wx.showToast({
-        title: res.msg,
-        icon: 'none'
-      })
-    }
+    const res = await getAddress({ token: wx.getStorageSync("token") });
+
+    this.setData({
+      addressList: res.data,
+    });
   },
   onPullDownRefresh() {
-    this.initShippingAddress()
-    wx.stopPullDownRefresh()
+    this.initShippingAddress();
+    wx.stopPullDownRefresh();
   },
-})
+});
