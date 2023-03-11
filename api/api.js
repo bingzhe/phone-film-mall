@@ -20,6 +20,10 @@ const getGoodsList = (params) => request("/Goods/getGoodsList", params, "POST");
 const getGoodsInfo = (params) => request("/Goods/getGoodsInfo", params, "POST");
 // 用户信息
 const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
+// 首页推荐商品
+const getGoodsIndex = (params) => request("/Goods/index", params, "POST");
+// 首页banner
+const getBanner = (params) => request("/Index/getBanner", params, "POST");
 
 // 获取用户默认地址
 const getDefaultAddress = (params) =>
@@ -27,7 +31,8 @@ const getDefaultAddress = (params) =>
 // 用户地址列表
 const getAddress = (params) => request("/Usersinfo/getAddress", params, "POST");
 // 用户地址详情
-const getAddressInfo = (params) => request("/Usersinfo/getAddressInfo", params, "POST");
+const getAddressInfo = (params) =>
+  request("/Usersinfo/getAddressInfo", params, "POST");
 // 用户保存地址
 const saveAddress = (params) =>
   request("/Usersinfo/saveAddress", params, "POST");
@@ -70,6 +75,8 @@ module.exports = {
   getDictItemsApi,
   getCateList,
   getGoodsList,
+  getGoodsIndex,
+  getBanner,
   getGoodsInfo,
   getUsersinfo,
   getDefaultAddress,

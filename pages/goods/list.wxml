@@ -8,7 +8,7 @@
   </view>
   <view class="filters">
     <view class="item {{orderBy==''?'active':''}}" data-val="" bindtap="filter">综合</view>
-    <view class="item {{orderBy=='addedDown'?'active':''}}" data-val="addedDown" bindtap="filter">新品</view>
+    <!-- <view class="item {{orderBy=='addedDown'?'active':''}}" data-val="addedDown" bindtap="filter">新品</view> -->
     <view class="item {{orderBy=='ordersDown'?'active':''}}" data-val="ordersDown" bindtap="filter">销量</view>
     <view class="item {{orderBy=='priceUp'?'active':''}}" data-val="priceUp" bindtap="filter">价格</view>
   </view>
