@@ -31,10 +31,10 @@
     </view>
   </view>
 </view>
-<view class="notice-box" wx:if="{{noticeList}}">
+<view class="notice-box" wx:if="{{noticeList.length>0}}">
   <swiper class="notice_swiper" vertical autoplay circular interval="8000">
-    <swiper-item wx:for="{{noticeList.dataList}}" wx:key="id">
-      <van-notice-bar wx:if="{{noticeList}}" mode="link" text="{{ item.title }}" background="#FFFFFF"
+    <swiper-item wx:for="{{noticeList}}" wx:key="id">
+      <van-notice-bar mode="link" text="{{ item.text }}" background="#FFFFFF"
         data-id="{{ item.id }}" speed="30" bind:click="goNotice">
         <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png"></image>
       </van-notice-bar>

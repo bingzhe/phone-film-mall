@@ -24,6 +24,9 @@ const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
 const getGoodsIndex = (params) => request("/Goods/index", params, "POST");
 // 首页banner
 const getBanner = (params) => request("/Index/getBanner", params, "POST");
+// 资讯列表
+const getAnnouncement = (params) =>
+  request("/Index/getAnnouncement", params, "POST");
 
 // 获取用户默认地址
 const getDefaultAddress = (params) =>
@@ -77,6 +80,7 @@ module.exports = {
   getGoodsList,
   getGoodsIndex,
   getBanner,
+  getAnnouncement,
   getGoodsInfo,
   getUsersinfo,
   getDefaultAddress,
