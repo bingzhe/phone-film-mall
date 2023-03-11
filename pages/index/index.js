@@ -1,8 +1,12 @@
-const WXAPI = require("apifm-wxapi");
 const TOOLS = require("../../utils/tools.js");
 const AUTH = require("../../utils/auth");
 
-import { getCateList, getGoodsIndex, getBanner } from "../../api/api.js";
+import {
+  getCateList,
+  getGoodsIndex,
+  getBanner,
+  getAnnouncement,
+} from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 const APP = getApp();
@@ -19,6 +23,7 @@ Page({
     loadingMoreHidden: true,
     curPage: 1,
     pageSize: 20,
+    noticeList: [],
   },
   tabClick(e) {
     // 商品分类点击
@@ -211,14 +216,16 @@ Page({
       path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
     };
   },
-  getNotice: function () {
-    var that = this;
-    WXAPI.noticeList({ pageSize: 5 }).then(function (res) {
-      if (res.code == 0) {
-        that.setData({
-          noticeList: res.data,
-        });
-      }
+  async getNotice() {
+    const result = await getAnnouncement();
+
+    const noticeList = result.data.map((item) => {
+      item.text = `${item.title}：${item.content}`;
+      return item;
+    });
+
+    this.setData({
+      noticeList: noticeList,
     });
   },
   // onReachBottom: function () {},
@@ -232,9 +239,9 @@ Page({
     });
   },
   goNotice(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "/pages/notice/show?id=" + id,
-    });
+    // const id = e.currentTarget.dataset.id;
+    // wx.navigateTo({
+    //   url: "/pages/notice/show?id=" + id,
+    // });
   },
 });
