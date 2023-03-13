@@ -20,6 +20,8 @@ const getGoodsList = (params) => request("/Goods/getGoodsList", params, "POST");
 const getGoodsInfo = (params) => request("/Goods/getGoodsInfo", params, "POST");
 // 用户信息
 const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
+// 保存手机号
+const savePhone = (params) => request("/Usersinfo/savePhone", params, "POST");
 // 首页推荐商品
 const getGoodsIndex = (params) => request("/Goods/index", params, "POST");
 // 首页banner
@@ -44,6 +46,9 @@ const delAddress = (params) => request("/Usersinfo/delAddress", params, "POST");
 
 // 加购物车
 const createCart = (params) => request("/Order/CreateCart", params, "POST");
+// 批量加入购物车
+const createCartBatch = (params) =>
+  request("/Order/CreateCartBatch", params, "POST");
 // 删除购物
 const delCart = (params) => request("/Order/DelCart", params, "POST");
 // 购物车列表
@@ -83,12 +88,14 @@ module.exports = {
   getAnnouncement,
   getGoodsInfo,
   getUsersinfo,
+  savePhone,
   getDefaultAddress,
   getAddress,
   getAddressInfo,
   saveAddress,
   delAddress,
   createCart,
+  createCartBatch,
   delCart,
   getCartList,
   createOrder,
