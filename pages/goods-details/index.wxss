@@ -14,7 +14,7 @@ textarea {
 }
 
 .container {
-  background-color: #F2f2f2;
+  background-color: #f2f2f2;
   min-height: 100vh;
   padding-bottom: 100rpx;
 }
@@ -90,8 +90,8 @@ swiper-item image {
   margin-right: 10px;
 }
 
-.goods-info-fx .icon-title{
-  padding-top:5px ;
+.goods-info-fx .icon-title {
+  padding-top: 5px;
   font-size: 11px;
 }
 
@@ -122,11 +122,11 @@ swiper-item image {
   padding: 0 30rpx;
   font-size: 25rpx;
   line-height: 1.4;
-  color: #CC0000;
+  color: #cc0000;
   padding-top: 26rpx;
 }
 
-.vcell{
+.vcell {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
@@ -174,7 +174,7 @@ swiper-item image {
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
-  border-radius: 12px;
+  /* border-radius: 12px; */
 }
 
 .label-title {
@@ -185,7 +185,7 @@ swiper-item image {
   justify-content: space-between;
 }
 
-.label-title .left{
+.label-title .left {
   border-left: 3px solid #e64340;
   height: auto;
   padding-left: 10px;
@@ -416,7 +416,27 @@ swiper-item image {
   padding: 14rpx 20rpx;
   border: 1px solid #ddd;
   border-radius: 6rpx;
-  margin: 0 20rpx 20rpx 0;
+  margin: 0 30rpx 20rpx 0;
+  position: relative;
+}
+
+.size-label-box .label-item .label-item-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  min-width: 16rpx;
+  padding: 0 6rpx;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  background-color: #ee0a24;
+  border: 1px solid #fff;
+  border-radius: 16rpx;
+  transform: translate(50%, -50%);
+  transform-origin: 100%;
 }
 
 .size-label-box .label-item.active {
@@ -535,7 +555,7 @@ swiper-item image {
 
 .shareFloatDiv2 .p2 {
   height: 20rpx;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 .shareFloatDiv2 .p3 {
@@ -556,8 +576,6 @@ swiper-item image {
   height: 300rpx;
   margin-top: 50rpx;
 }
-
-
 
 .posterImg-box {
   position: absolute;
@@ -620,8 +638,8 @@ swiper-item image {
   color: #666;
 }
 
-.reputation-cell-group{
-  background-color:white !important;
+.reputation-cell-group {
+  background-color: white !important;
   border-radius: 12px;
 }
 
@@ -634,7 +652,7 @@ swiper-item image {
   top: 16rpx !important;
 }
 
-.reputation-cell .avatarUrl-img{
+.reputation-cell .avatarUrl-img {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -664,7 +682,7 @@ swiper-item image {
   font-size: 26rpx;
 }
 .van-progress {
-   margin: 32rpx 0;
+  margin: 32rpx 0;
 }
 .flex {
   display: flex;

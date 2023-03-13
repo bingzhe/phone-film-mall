@@ -71,6 +71,10 @@
             >
               <!-- data-propertyindex="{{ idx }}" -->
               {{ item.spec_name }}
+
+              <view wx:if="{{ item.cart_num > 0 }}" class="label-item-badge">
+                {{ item.cart_num }}
+              </view>
             </view>
           </view>
         </block>
@@ -103,18 +107,18 @@
     </view>
   </scroll-view>
   <van-goods-action>
-    <van-goods-action-icon
+    <!-- <van-goods-action-icon
       icon="cart-o"
       text="购物车"
       bind:click="goShopCar"
       info="{{ shopNum ? shopNum : '' }}"
-    ></van-goods-action-icon>
+    ></van-goods-action-icon> -->
     <!-- prettier-ignore-attribute -->
     <van-goods-action-button
       wx:if="{{ !goodsDetail.basicInfo.pingtuan }}"
       text="加入购物车"
       type="warning"
-      bind:click="{{ goodsDetailSkuShowType == 0 ? 'toAddShopCar' : 'addShopCar'}}"
+      bind:click="addShopCar"
     ></van-goods-action-button>
     <!-- <van-goods-action-button
       wx:if="{{ !goodsDetail.basicInfo.pingtuan }}"

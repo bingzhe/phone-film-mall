@@ -51,14 +51,17 @@ Page({
 
   onLoad: function () {},
   onShow: function () {
-    AUTH.checkHasLogined().then((isLogined) => {
-      console.log("isLogined", isLogined);
-      if (isLogined) {
-        this.initShippingAddress();
-      } else {
-        AUTH.login(this);
-      }
-    });
+
+    AUTH.login();
+    this.initShippingAddress();
+
+    // AUTH.checkHasLogined().then((isLogined) => {
+    //   console.log("isLogined", isLogined);
+    //   if (isLogined) {
+    //   } else {
+    //     AUTH.login(this);
+    //   }
+    // });
   },
   async initShippingAddress() {
     const res = await getAddress({ token: wx.getStorageSync("token") });
