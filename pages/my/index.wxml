@@ -36,12 +36,12 @@
   <van-cell wx:for="{{ myCards }}" wx:key="id" center title="{{ item.cardInfo.name }}" label="{{ item.dateEnd }} 到期" value-class="v-c" value="剩余: {{ item.amount }}" is-link url="/pages/card/logs?id={{ item.id }}" />
 </van-cell-group> -->
 <van-cell title="我的订单" value="更多" is-link url="/pages/order-list/index" />
-<van-grid clickable column-num="5">
+<van-grid clickable column-num="4">
   <van-grid-item icon="balance-list-o" text="待付款" badge="{{count_id_no_pay}}" bindtap='goOrder' data-type="0" />
   <van-grid-item icon="logistics" text="待发货" badge="{{count_id_no_transfer}}" bindtap='goOrder' data-type="1" />
   <van-grid-item icon="certificate" text="待收货" badge="{{count_id_no_confirm}}" bindtap='goOrder' data-type="2" />
-  <van-grid-item icon="flower-o" text="待评价" badge="{{count_id_no_reputation}}" bindtap='goOrder' data-type="3" />
-  <van-grid-item icon="after-sale" text="售后" bindtap='goOrder' data-type="99" />
+  <van-grid-item icon="flower-o" text="已完成" badge="{{count_id_no_reputation}}" bindtap='goOrder' data-type="3" />
+  <!-- <van-grid-item icon="after-sale" text="售后" bindtap='goOrder' data-type="99" /> -->
 </van-grid>
 <!-- <van-cell wx:if="{{ cps_open == '1' }}" title="CPS订单" value="管理" is-link url="/packageCps/pages/order-list/cps" /> -->
 <!-- <van-cell wx:if="{{ recycle_open == '1' }}" title="回收订单" value="管理" is-link url="/pages/recycle/orders" /> -->

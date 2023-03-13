@@ -56,7 +56,6 @@ Page({
       totalPrice += item.price;
     });
 
-    console.log(totalPrice)
     this.setData({
       goodsList: result.data,
       totalPrice: totalPrice,
