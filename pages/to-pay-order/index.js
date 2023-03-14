@@ -10,6 +10,7 @@ import {
   savePhone,
   getDefaultAddress,
   createOrder,
+  goodsOrderPay,
 } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
@@ -95,21 +96,13 @@ Page({
       return value;
     },
     cardId: "0", // 使用的次卡ID
+
+    paywaySelectShow: false,
+    payway: "2",
+    order_no: "",
   },
   onShow() {
-    if (this.data.pageIsEnd) {
-      return;
-    }
-    AUTH.checkHasLogined().then((isLogined) => {
-      if (isLogined) {
-        this.doneShow();
-      } else {
-        AUTH.authorize().then((res) => {
-          AUTH.bindSeller();
-          this.doneShow();
-        });
-      }
-    });
+    this.doneShow();
   },
   async doneShow() {
     //购物车下单
@@ -182,23 +175,13 @@ Page({
 
     console.log(postData);
 
-    await createOrder(postData);
+    const result = await createOrder(postData);
 
     this.setData({
-      btnLoading: false,
+      order_no: result.data.order_no,
+      paywaySelectShow: true,
     });
-
-    let totalRes = {
-      code: 0,
-      msg: "success",
-      data: {
-        score: 0,
-        amountReal: 0,
-        orderIds: [],
-      },
-    };
-
-    this.processAfterCreateOrder(totalRes);
+    // this.processAfterCreateOrder(totalRes);
   },
   async processAfterCreateOrder(res) {
     this.setData({
@@ -444,5 +427,44 @@ Page({
     this.setData({
       dateStartpop: false,
     });
+  },
+
+  onPaywayChange(e) {
+    this.setData({
+      payway: e.detail,
+    });
+  },
+
+  paywaySelectCancel() {
+    this.setData({
+      paywaySelectShow: false,
+    });
+  },
+
+  async paywaySelectConfirm() {
+    const params = {
+      token: wx.getStorageSync("token"),
+      order_no: this.data.order_no,
+      pay_type: this.data.payway,
+    };
+
+    const result = await goodsOrderPay(params);
+
+    console.log("paywaySelectConfirm", result);
+    this.paywaySelectCancel();
+    
+    if (this.data.payway == "1") {
+      wx.showToast({
+        title: "支付成功",
+      });
+
+      setTimeout(() => {
+        wx.redirectTo({
+          url: "/pages/order-list/index",
+        });
+      }, 1500);
+    } else if (this.data.payway == "2") {
+      console.log("调微信支付");
+    }
   },
 });

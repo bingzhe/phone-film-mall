@@ -11,11 +11,12 @@
 </view>
 <view class="space van-hairline--bottom"></view>
 <van-cell title="我的订单" value="更多" is-link url="/pages/order-list/index" />
-<van-grid clickable column-num="4">
-  <van-grid-item icon="balance-list-o" text="待付款" badge="{{count_id_no_pay}}" bindtap='goOrder' data-type="0" />
-  <van-grid-item icon="logistics" text="待发货" badge="{{count_id_no_transfer}}" bindtap='goOrder' data-type="1" />
-  <van-grid-item icon="certificate" text="待收货" badge="{{count_id_no_confirm}}" bindtap='goOrder' data-type="2" />
-  <van-grid-item icon="flower-o" text="已完成" badge="{{count_id_no_reputation}}" bindtap='goOrder' data-type="3" />
+<van-grid clickable column-num="5">
+  <van-grid-item icon="balance-list-o" text="待付款" bindtap='goOrder' data-type="0" />
+  <van-grid-item icon="after-sale" text="待确认" bindtap='goOrder' data-type="1" />
+  <van-grid-item icon="logistics" text="待发货"  bindtap='goOrder' data-type="2" />
+  <van-grid-item icon="certificate" text="待收货" bindtap='goOrder' data-type="3" />
+  <van-grid-item icon="flower-o" text="已完成"  bindtap='goOrder' data-type="4" />
 </van-grid>
 
 

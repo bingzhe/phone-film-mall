@@ -3,7 +3,7 @@ const CONFIG = require("../../config.js");
 const WXAPI = require("apifm-wxapi");
 import wxbarcode from "wxbarcode";
 
-import { getOrderInfo } from "../../api/api.js";
+import { getOrderInfo, receiptOrder } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 Page({
@@ -66,7 +66,7 @@ Page({
     result.data.goods_list.forEach((goods) => {
       goods.pic_url = `${BASE_URL}${goods.goods_img}`;
     });
-    
+
     this.setData({
       orderDetail: result.data,
     });
@@ -87,13 +87,12 @@ Page({
       content: "",
       success: function (res) {
         if (res.confirm) {
-          WXAPI.orderDelivery(wx.getStorageSync("token"), orderId).then(
-            function (res) {
-              if (res.code == 0) {
-                that.onShow();
-              }
-            }
-          );
+          receiptOrder({
+            token: wx.getStorageSync("token"),
+            order_id: orderId,
+          }).then(() => {
+            that.onShow();
+          });
         }
       },
     });
@@ -179,10 +178,12 @@ Page({
     if (statu == 0) {
       return "待付款";
     } else if (statu == 1) {
+      return "待确认";
+    }  else if (statu == 2) {
       return "待发货";
-    } else if (statu == 2) {
-      return "待收货";
     } else if (statu == 3) {
+      return "待收货";
+    } else if (statu == 4) {
       return "已完成";
     }
   },

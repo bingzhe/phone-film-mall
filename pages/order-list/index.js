@@ -2,7 +2,7 @@ const wxpay = require("../../utils/pay.js");
 const WXAPI = require("apifm-wxapi");
 const AUTH = require("../../utils/auth");
 
-import { getOrderList } from "../../api/api.js";
+import { getOrderList, quxiaoOrder } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 Page({
@@ -20,14 +20,18 @@ Page({
       },
       {
         status: 1,
-        label: "待发货",
+        label: "待确认",
       },
       {
         status: 2,
-        label: "待收货",
+        label: "待发货",
       },
       {
         status: 3,
+        label: "待收货",
+      },
+      {
+        status: 4,
         label: "已完成",
       },
     ],
@@ -52,14 +56,12 @@ Page({
       content: "",
       success: function (res) {
         if (res.confirm) {
-          WXAPI.orderClose(wx.getStorageSync("token"), orderId).then(function (
-            res
-          ) {
-            if (res.code == 0) {
-              that.data.page = 1;
-              that.orderList();
-              that.getOrderStatistics();
-            }
+          quxiaoOrder({
+            token: wx.getStorageSync("token"),
+            order_id: orderId,
+          }).then(() => {
+            that.data.page = 1;
+            that.orderList();
           });
         }
       },
@@ -184,7 +186,6 @@ Page({
       WXAPI.orderPay(wx.getStorageSync("token"), orderId).then(function (res) {
         _this.data.page = 1;
         _this.orderList();
-        _this.getOrderStatistics();
       });
     } else {
       wxpay.wxpay("order", money, orderId, "/pages/order-list/index");
@@ -206,7 +207,6 @@ Page({
         });
       }
     }
-    this.getOrderStatistics();
     this.orderList();
     this.setData({
       sphpay_open: wx.getStorageSync("sphpay_open"),
@@ -215,24 +215,9 @@ Page({
   onReady: function () {
     // 生命周期函数--监听页面初次渲染完成
   },
-  getOrderStatistics() {
-    WXAPI.orderStatistics(wx.getStorageSync("token")).then((res) => {
-      if (res.code == 0) {
-        const badges = this.data.badges;
-        badges[1] = res.data.count_id_no_pay;
-        badges[2] = res.data.count_id_no_transfer;
-        badges[3] = res.data.count_id_no_confirm;
-        badges[4] = res.data.count_id_no_reputation;
-        this.setData({
-          badges,
-        });
-      }
-    });
-  },
   onShow: function () {},
   onPullDownRefresh: function () {
     this.data.page = 1;
-    this.getOrderStatistics();
     this.orderList();
     wx.stopPullDownRefresh();
   },
@@ -267,7 +252,7 @@ Page({
         goods.pic_url = `${BASE_URL}${goods.goods_img}`;
       });
     });
-    
+
     console.log(res.data);
 
     this.setData({
@@ -278,10 +263,12 @@ Page({
     if (statu == 0) {
       return "待付款";
     } else if (statu == 1) {
+      return "待确认";
+    }  else if (statu == 2) {
       return "待发货";
-    } else if (statu == 2) {
-      return "待收货";
     } else if (statu == 3) {
+      return "待收货";
+    } else if (statu == 4) {
       return "已完成";
     }
   },

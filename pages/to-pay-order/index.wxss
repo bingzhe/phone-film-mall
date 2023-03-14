@@ -269,3 +269,19 @@ form {
 .login-box .btn {
   margin: 88rpx 32rpx;
 }
+
+.radio-wrapper{
+  text-align: center;
+  padding: 40rpx 80rpx;
+}
+
+.radio-wrapper .van-radio {
+  margin-bottom: 20rpx;
+}
+
+.bth-wrapper{
+  text-align: center;
+}
+.bth-wrapper .van-button--normal {
+  padding: 0 60px;
+}

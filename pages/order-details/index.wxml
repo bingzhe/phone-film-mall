@@ -10,7 +10,7 @@
       </view>
       <view class="right-text">
         <view class="status red">{{orderDetail.statusStr}}</view>
-        <view class="des" hidden="true">请于11时59分59秒内付款，超时订单将自动关闭</view>
+        <view class="des">请及时付款，超时订单将自动关闭</view>
       </view>
     </view>
     <block wx:if="{{orderDetail.logistics}}">
@@ -77,12 +77,12 @@
           lazy-load
         />
       </block>
-      <view class="btn-row" wx:if="{{orderDetail.status==3}}">
+      <!-- <view class="btn-row" wx:if="{{orderDetail.status==3}}">
         <button style="float:right;" class="confirm-btn" formType="submit">提交评价</button>
-      </view>
+      </view> -->
     </form>
     <form bindsubmit="confirmBtnTap" report-submit="true">
-      <view class="btn-row" wx:if="{{orderDetail.status==2}}">
+      <view class="btn-row" wx:if="{{orderDetail.status==3}}">
         <button class="confirm-btn" formType="submit">确认收货</button>
       </view>
     </form>
