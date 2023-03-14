@@ -245,14 +245,14 @@ Page({
     //   that.setData(_data);
     // }
   },
-  async shopSubdetail(shopId) {
-    const res = await WXAPI.shopSubdetail(shopId);
-    if (res.code == 0) {
-      this.setData({
-        shopSubdetail: res.data,
-      });
-    }
-  },
+  // async shopSubdetail(shopId) {
+  //   const res = await WXAPI.shopSubdetail(shopId);
+  //   if (res.code == 0) {
+  //     this.setData({
+  //       shopSubdetail: res.data,
+  //     });
+  //   }
+  // },
   goShopCar: function () {
     wx.reLaunch({
       url: "/pages/shop-cart/index",

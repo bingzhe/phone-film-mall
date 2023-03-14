@@ -1,6 +1,3 @@
-const WXAPI = require("apifm-wxapi");
-const AUTH = require("../../utils/auth");
-const TOOLS = require("../../utils/tools.js"); // TOOLS.showTabBarBadge();
 import { getCateList } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
@@ -140,66 +137,19 @@ Page({
     };
   },
   onShow() {
-    AUTH.checkHasLogined().then((isLogined) => {
-      if (isLogined) {
-        this.setData({
-          wxlogin: isLogined,
-        });
-        TOOLS.showTabBarBadge(); // 获取购物车数据，显示TabBarBadge
-      }
-    });
+    // AUTH.checkHasLogined().then((isLogined) => {
+    //   if (isLogined) {
+    //     this.setData({
+    //       wxlogin: isLogined,
+    //     });
+    //     TOOLS.showTabBarBadge(); // 获取购物车数据，显示TabBarBadge
+    //   }
+    // });
     const _categoryId = wx.getStorageSync("_categoryId");
     wx.removeStorageSync("_categoryId");
     if (_categoryId) {
       this.data.categorySelected.category_id = _categoryId;
       this.categories();
-    }
-  },
-  async addShopCar(e) {
-    const curGood = this.data.currentGoods.find((ele) => {
-      return ele.id == e.currentTarget.dataset.id;
-    });
-    if (!curGood) {
-      return;
-    }
-    if (curGood.stores <= 0) {
-      wx.showToast({
-        title: "已售罄~",
-        icon: "none",
-      });
-      return;
-    }
-    if (!curGood.propertyIds && !curGood.hasAddition) {
-      // 直接调用加入购物车方法
-      const res = await WXAPI.shippingCarInfoAddItem(
-        wx.getStorageSync("token"),
-        curGood.id,
-        1,
-        []
-      );
-      if (res.code == 30002) {
-        // 需要选择规格尺寸
-        this.setData({
-          skuCurGoods: curGood,
-        });
-      } else if (res.code == 0) {
-        wx.showToast({
-          title: "加入成功",
-          icon: "success",
-        });
-        wx.showTabBar();
-        TOOLS.showTabBarBadge(); // 获取购物车数据，显示TabBarBadge
-      } else {
-        wx.showToast({
-          title: res.msg,
-          icon: "none",
-        });
-      }
-    } else {
-      // 需要选择 SKU 和 可选配件
-      this.setData({
-        skuCurGoods: curGood,
-      });
     }
   },
   goodsGoBottom() {

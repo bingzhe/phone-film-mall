@@ -10,7 +10,7 @@
       </view>
       <view class="right-text">
         <view class="status red">{{orderDetail.statusStr}}</view>
-        <view class="des">请及时付款，超时订单将自动关闭</view>
+        <view class="des" wx:if="{{orderDetail.status==0}}">请及时付款，超时订单将自动关闭</view>
       </view>
     </view>
     <block wx:if="{{orderDetail.logistics}}">

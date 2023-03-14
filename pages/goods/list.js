@@ -44,6 +44,7 @@ Page({
 
     if (this.data.orderBy == "ordersDown") {
       _data.order = 1;
+      _data.by = 0;
     } else if (this.data.orderBy == "priceUp") {
       _data.order = 2;
     } else {

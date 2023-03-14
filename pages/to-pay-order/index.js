@@ -439,6 +439,9 @@ Page({
     this.setData({
       paywaySelectShow: false,
     });
+    wx.redirectTo({
+      url: "/pages/order-list/index",
+    });
   },
 
   async paywaySelectConfirm() {
@@ -451,8 +454,10 @@ Page({
     const result = await goodsOrderPay(params);
 
     console.log("paywaySelectConfirm", result);
-    this.paywaySelectCancel();
-    
+    this.setData({
+      paywaySelectShow: false,
+    });
+
     if (this.data.payway == "1") {
       wx.showToast({
         title: "支付成功",

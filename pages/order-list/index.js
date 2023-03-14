@@ -2,7 +2,7 @@ const wxpay = require("../../utils/pay.js");
 const WXAPI = require("apifm-wxapi");
 const AUTH = require("../../utils/auth");
 
-import { getOrderList, quxiaoOrder } from "../../api/api.js";
+import { getOrderList, quxiaoOrder, goodsOrderPay } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 Page({
@@ -38,6 +38,10 @@ Page({
     status: 9999,
     hasRefund: false,
     badges: [0, 0, 0, 0, 0],
+
+    paywaySelectShow: false,
+    payway: "2",
+    order_no: "",
   },
   statusTap: function (e) {
     const index = e.detail.index;
@@ -87,62 +91,68 @@ Page({
     this.data.payButtonClicked = true;
     setTimeout(() => {
       this.data.payButtonClicked = false;
-    }, 3000); // 可自行修改时间间隔（目前是3秒内只能点击一次支付按钮）
+    }, 2000); // 可自行修改时间间隔（目前是3秒内只能点击一次支付按钮）
     // 防止连续点击--结束
-    const that = this;
-    const orderId = e.currentTarget.dataset.id;
-    let money = e.currentTarget.dataset.money;
-    const needScore = e.currentTarget.dataset.score;
-    WXAPI.userAmount(wx.getStorageSync("token")).then(function (res) {
-      if (res.code == 0) {
-        const order_pay_user_balance = wx.getStorageSync(
-          "order_pay_user_balance"
-        );
-        if (order_pay_user_balance != "1") {
-          res.data.balance = 0;
-        }
-        // 增加提示框
-        if (res.data.score < needScore) {
-          wx.showToast({
-            title: "您的积分不足，无法支付",
-            icon: "none",
-          });
-          return;
-        }
-        let _msg = "订单金额: " + money + " 元";
-        if (res.data.balance > 0) {
-          _msg += ",可用余额为 " + res.data.balance + " 元";
-          if (money - res.data.balance > 0) {
-            _msg +=
-              ",仍需微信支付 " + (money - res.data.balance).toFixed(2) + " 元";
-          }
-        }
-        if (needScore > 0) {
-          _msg += ",并扣除 " + needScore + " 积分";
-        }
-        money = money - res.data.balance;
-        wx.showModal({
-          title: "请确认支付",
-          content: _msg,
-          confirmText: "确认支付",
-          cancelText: "取消支付",
-          success: function (res) {
-            console.log(res);
-            if (res.confirm) {
-              that._toPayTap(orderId, money);
-            } else {
-              console.log("用户点击取消支付");
-            }
-          },
-        });
-      } else {
-        wx.showModal({
-          title: "错误",
-          content: "无法获取用户资金信息",
-          showCancel: false,
-        });
-      }
+    // const that = this;
+    const order_no = e.currentTarget.dataset.id;
+
+    this.setData({
+      order_no,
+      paywaySelectShow: true,
     });
+
+    // let money = e.currentTarget.dataset.money;
+    // const needScore = e.currentTarget.dataset.score;
+    // WXAPI.userAmount(wx.getStorageSync("token")).then(function (res) {
+    //   if (res.code == 0) {
+    //     const order_pay_user_balance = wx.getStorageSync(
+    //       "order_pay_user_balance"
+    //     );
+    //     if (order_pay_user_balance != "1") {
+    //       res.data.balance = 0;
+    //     }
+    //     // 增加提示框
+    //     if (res.data.score < needScore) {
+    //       wx.showToast({
+    //         title: "您的积分不足，无法支付",
+    //         icon: "none",
+    //       });
+    //       return;
+    //     }
+    //     let _msg = "订单金额: " + money + " 元";
+    //     if (res.data.balance > 0) {
+    //       _msg += ",可用余额为 " + res.data.balance + " 元";
+    //       if (money - res.data.balance > 0) {
+    //         _msg +=
+    //           ",仍需微信支付 " + (money - res.data.balance).toFixed(2) + " 元";
+    //       }
+    //     }
+    //     if (needScore > 0) {
+    //       _msg += ",并扣除 " + needScore + " 积分";
+    //     }
+    //     money = money - res.data.balance;
+    //     wx.showModal({
+    //       title: "请确认支付",
+    //       content: _msg,
+    //       confirmText: "确认支付",
+    //       cancelText: "取消支付",
+    //       success: function (res) {
+    //         console.log(res);
+    //         if (res.confirm) {
+    //           that._toPayTap(orderId, money);
+    //         } else {
+    //           console.log("用户点击取消支付");
+    //         }
+    //       },
+    //     });
+    //   } else {
+    //     wx.showModal({
+    //       title: "错误",
+    //       content: "无法获取用户资金信息",
+    //       showCancel: false,
+    //     });
+    //   }
+    // });
   },
   async wxSphGetpaymentparams(e) {
     const orderId = e.currentTarget.dataset.id;
@@ -264,12 +274,50 @@ Page({
       return "待付款";
     } else if (statu == 1) {
       return "待确认";
-    }  else if (statu == 2) {
+    } else if (statu == 2) {
       return "待发货";
     } else if (statu == 3) {
       return "待收货";
     } else if (statu == 4) {
       return "已完成";
+    }
+  },
+  onPaywayChange(e) {
+    this.setData({
+      payway: e.detail,
+    });
+  },
+
+  paywaySelectCancel() {
+    this.setData({
+      paywaySelectShow: false,
+    });
+  },
+
+  async paywaySelectConfirm() {
+    const params = {
+      token: wx.getStorageSync("token"),
+      order_no: this.data.order_no,
+      pay_type: this.data.payway,
+    };
+
+    const result = await goodsOrderPay(params);
+
+    console.log("paywaySelectConfirm", result);
+    this.paywaySelectCancel();
+
+    if (this.data.payway == "1") {
+      wx.showToast({
+        title: "支付成功",
+      });
+
+      setTimeout(() => {
+        wx.redirectTo({
+          url: "/pages/order-list/index",
+        });
+      }, 1500);
+    } else if (this.data.payway == "2") {
+      console.log("调微信支付");
     }
   },
 });
