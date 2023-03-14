@@ -373,7 +373,7 @@ Page({
 
     this.setData({
       bindMobileStatus: res.data.phone ? 1 : 2, // 账户绑定的手机号码状态
-      mobile: res.data.phon,
+      mobile: res.data.phone,
     });
   },
   async getPhoneNumber(e) {
@@ -385,9 +385,10 @@ Page({
       return;
     }
 
+    console.log(e.detail.code);
     const result = await savePhone({
       token: wx.getStorageSync("token"),
-      phone: e.detail.code,
+      code: e.detail.code,
     });
 
     wx.showToast({

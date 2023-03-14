@@ -21,7 +21,7 @@ const getGoodsInfo = (params) => request("/Goods/getGoodsInfo", params, "POST");
 // 用户信息
 const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
 // 保存手机号
-const savePhone = (params) => request("/Usersinfo/savePhone", params, "POST");
+const savePhone = (params) => request("/WxLogin/savePhone", params, "POST");
 // 首页推荐商品
 const getGoodsIndex = (params) => request("/Goods/index", params, "POST");
 // 首页banner
@@ -73,7 +73,7 @@ const saveUsername = (params) =>
 // --文件上传--
 // 文件上传
 const fileCommonUpload = (filePath) =>
-  uploadFile("/Api/Upload/index", filePath);
+  uploadFile("/Upload/index", filePath);
 
 module.exports = {
   loginApi,

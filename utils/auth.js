@@ -66,7 +66,6 @@ async function wxaCode() {
 }
 
 async function login(page) {
-  const _this = this;
   wx.login({
     success: function (res) {
       const code = res.code;
@@ -79,136 +78,19 @@ async function login(page) {
           page.onShow();
         }
       });
-
-      // const extConfigSync = wx.getExtConfigSync();
-      // if (extConfigSync.subDomain) {
-      //   WXAPI.wxappServiceLogin({
-      //     code: res.code,
-      //   }).then(function (res) {
-      //     if (res.code == 10000) {
-      //       // 去注册
-      //       return;
-      //     }
-      //     if (res.code != 0) {
-      //       // 登录错误
-      //       wx.showModal({
-      //         title: "无法登录",
-      //         content: res.msg,
-      //         showCancel: false,
-      //       });
-      //       return;
-      //     }
-      //     wx.setStorageSync("token", res.data.token);
-      //     wx.setStorageSync("uid", res.data.uid);
-      //     _this.bindSeller();
-      //     if (page) {
-      //       page.onShow();
-      //     }
-      //   });
-      // } else {
-      //   WXAPI.login_wx(res.code).then(function (res) {
-      //     if (res.code == 10000) {
-      //       // 去注册
-      //       return;
-      //     }
-      //     if (res.code != 0) {
-      //       // 登录错误
-      //       wx.showModal({
-      //         title: "无法登录",
-      //         content: res.msg,
-      //         showCancel: false,
-      //       });
-      //       return;
-      //     }
-      //     wx.setStorageSync("token", res.data.token);
-      //     wx.setStorageSync("uid", res.data.uid);
-      //     _this.bindSeller();
-      //     if (page) {
-      //       page.onShow();
-      //     }
-      //   });
-      // }
-
-      // getOpenid({ code: res.code }).then(function (res) {
-      //   if (res.code == 10000) {
-      //     // 去注册
-      //     return;
-      //   }
-      //   if (res.code != 0) {
-      //     // 登录错误
-      //     wx.showModal({
-      //       title: "无法登录",
-      //       content: res.msg,
-      //       showCancel: false,
-      //     });
-      //     return;
-      //   }
-      //   wx.setStorageSync("token", res.data.token);
-      //   wx.setStorageSync("uid", res.data.uid);
-      //   _this.bindSeller();
-      //   if (page) {
-      //     page.onShow();
-      //   }
-      // });
+    },
+    fail: function (err) {
+      console.log("登录错误", err);
+      wx.removeStorageSync("token");
     },
   });
 }
 
 async function authorize() {
-  // const code = await wxaCode()
-  // const resLogin = await WXAPI.login_wx(code)
-  // if (resLogin.code == 0) {
-  //   wx.setStorageSync('token', resLogin.data.token)
-  //   wx.setStorageSync('uid', resLogin.data.uid)
-  //   return resLogin
-  // }
   return new Promise((resolve, reject) => {
     wx.login({
       success: function (res) {
         const code = res.code;
-        // let referrer = ""; // 推荐人
-        // let referrer_storge = wx.getStorageSync("referrer");
-        // if (referrer_storge) {
-        //   referrer = referrer_storge;
-        // }
-        // 下面开始调用注册接口
-        // const extConfigSync = wx.getExtConfigSync();
-        // if (extConfigSync.subDomain) {
-        //   WXAPI.wxappServiceAuthorize({
-        //     code: code,
-        //     referrer: referrer,
-        //   }).then(function (res) {
-        //     if (res.code == 0) {
-        //       wx.setStorageSync("token", res.data.token);
-        //       wx.setStorageSync("uid", res.data.uid);
-        //       resolve(res);
-        //     } else {
-        //       wx.showToast({
-        //         title: res.msg,
-        //         icon: "none",
-        //       });
-        //       reject(res.msg);
-        //     }
-        //   });
-        // } else {
-        //   WXAPI.authorize({
-        //     code: code,
-        //     referrer: referrer,
-        //   }).then(function (res) {
-        //     if (res.code == 0) {
-        //       wx.setStorageSync("token", res.data.token);
-        //       wx.setStorageSync("uid", res.data.uid);
-        //       resolve(res);
-        //     } else {
-        //       wx.showToast({
-        //         title: res.msg,
-        //         icon: "none",
-        //       });
-        //       reject(res.msg);
-        //     }
-        //   });
-        // }
-
         getOpenid({ code: code }).then(function (res) {
           console.log("getOpenid", res);
           wx.setStorageSync("token", res.data);

@@ -1,4 +1,4 @@
-<block wx:if="{{ bindMobileStatus == 1 }}">
+<block wx:if="{{ bindMobileStatus == 2 }}">
   <view class="login-box">
     <image class="logo" src="/images/wx.jpg" mode="widthFix"></image>
     <view class="line"></view>
@@ -9,7 +9,7 @@
     </view>
   </view>
 </block>
-<block wx:if="{{ bindMobileStatus == 2}}">
+<block wx:if="{{ bindMobileStatus == 1}}">
   <block> <!-- 购物车 -->
       <van-card
         wx:for="{{goodsList}}" wx:key="cart_id"
