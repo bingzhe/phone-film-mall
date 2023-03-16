@@ -501,7 +501,10 @@ Page({
         fail: function (err) {
           console.error(err);
           wx.showToast({
-            title: "支付失败:" + err,
+            title: "支付失败:",
+          });
+          wx.redirectTo({
+            url: "/pages/order-list/index",
           });
         },
         success: function () {
