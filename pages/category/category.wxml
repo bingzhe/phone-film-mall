@@ -36,9 +36,9 @@
     <block wx:if="{{ categoryMod == 2 }}">
       <van-cell
         title="{{ categorySelected.cate_name }}"
-        is-link
-        url="/pages/goods/list?categoryId={{ categorySelected.category_id }}"
-      ></van-cell>
+        ></van-cell>
+        <!-- is-link -->
+        <!-- url="/pages/goods/list?categoryId={{ categorySelected.category_id }}" -->
       <view class="small-category-box">
         <navigator
           wx:for="{{ secondCategories }}"

@@ -13,7 +13,7 @@
         <view class="des" wx:if="{{orderDetail.status==0}}">请及时付款，超时订单将自动关闭</view>
       </view>
     </view>
-    <block wx:if="{{orderDetail.logistics}}">
+    <!-- <block wx:if="{{orderDetail.logistics}}">
       <view wx:if="{{orderDetail.logisticsTraces}}" class="wuliu-box">
         <view class="icon-box">
           <image class="icon" src="/images/order-details/icon-wuliu.png"></image>
@@ -60,7 +60,24 @@
           </view>
         </view>
       </view>
-    </block>
+    </block> -->
+      <view wx:if="{{orderDetail.delivery_type === 0}}" class="address-sec">
+        <view class="icon-box">
+          <image class="icon" src="/images/order-details/icon-address.png"></image>
+        </view>
+        <view class="right-box">
+          <view class="name-tel">{{orderDetail.addressee}} {{orderDetail.phone}}</view>
+          <view class="text">
+            {{orderDetail.province}} {{orderDetail.city}} {{orderDetail.area}} {{orderDetail.address}}
+          </view>
+        </view>
+      </view>
+      
+      <view wx:if="{{orderDetail.delivery_type === 1}}">
+        <van-cell title="提货人" value="{{orderDetail.addressee}}" />
+        <van-cell title="联系电话" value="{{orderDetail.phone}}" />
+      </view>
+
   </view>
 
   <view class="goods-list">

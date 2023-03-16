@@ -33,11 +33,14 @@
             <label class="radio">
               <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
             </label>
+            <label class="radio">
+              <radio value="zq" checked="{{peisongType == 'zq'}}" /> 自提
+            </label>
           </radio-group>
         </view>
       </van-cell>
-      <van-cell  title="配送地址" />  
-      <view class="address-box">
+      <van-cell wx:if="{{peisongType == 'kd'}}" title="配送地址" />  
+      <view wx:if="{{peisongType == 'kd'}}" class="address-box">
         <van-cell wx:if="{{!curAddressData}}" icon="add-o" title="新增收货地址" is-link bind:click="addAddress" />
         <view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
           <view class="l">
@@ -48,7 +51,27 @@
             <image class="next" src="/images/icon/next.png"></image>
           </view>
         </view>
-      </view>  
+      </view> 
+      
+      <van-field
+        wx:if="{{peisongType == 'zq'}}"
+        model:value="{{ addressee }}"
+        label="提货人"
+        focus
+        clearable
+        required
+        placeholder="请输入提货人"
+      />
+      <van-field
+        wx:if="{{peisongType == 'zq'}}"
+        model:value="{{ phone }}"
+        label="联系电话"
+        type="number"
+        clearable
+        required
+        placeholder="请输入手机号码">
+        <van-button slot="button" size="small" type="danger" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">自动获取</van-button>
+      </van-field>      
     </view>
   </view>
 

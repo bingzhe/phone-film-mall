@@ -247,10 +247,8 @@ Page({
       token: wx.getStorageSync("token"),
     };
 
-    postData.status = this.data.status;
-
-    if (postData.status == 9999) {
-      postData.status = "";
+    if (this.data.status != 9999) {
+      postData.status = this.data.status;
     }
     const res = await getOrderList(postData);
     wx.hideLoading();
@@ -311,13 +309,32 @@ Page({
         title: "支付成功",
       });
 
-      setTimeout(() => {
-        wx.redirectTo({
-          url: "/pages/order-list/index",
-        });
-      }, 1500);
+      this.orderList();
     } else if (this.data.payway == "2") {
       console.log("调微信支付");
+      const res = JSON.parse(result.data);
+      const that = this;
+      // 发起支付
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: res.signType,
+        paySign: res.paySign,
+        fail: function (err) {
+          console.error(err);
+          wx.showToast({
+            title: "支付失败:" + err,
+          });
+        },
+        success: function () {
+          // 提示支付成功
+          wx.showToast({
+            title: "支付成功",
+          });
+          that.orderList();
+        },
+      });
     }
   },
 });

@@ -97,6 +97,8 @@ Page({
     },
     cardId: "0", // 使用的次卡ID
 
+    addressee: "", //提货人
+    phone: "", //联系电话
     paywaySelectShow: false,
     payway: "2",
     order_no: "",
@@ -160,18 +162,39 @@ Page({
       pay_price: this.data.totalPrice,
     };
 
-    if (!this.data.curAddressData) {
-      wx.hideLoading();
-      wx.showToast({
-        title: "请设置收货地址",
-        icon: "none",
-      });
-      this.setData({
-        btnLoading: false,
-      });
-      return;
+    if (this.data.peisongType == "kd") {
+      postData.delivery_type = 0;
+
+      if (!this.data.curAddressData) {
+        wx.hideLoading();
+        wx.showToast({
+          title: "请设置收货地址",
+          icon: "none",
+        });
+        this.setData({
+          btnLoading: false,
+        });
+        return;
+      }
+      postData.address_id = this.data.curAddressData.address_id;
+    } else if ((this.data.peisongType = "zq")) {
+      postData.delivery_type = 1;
+
+      if (!this.data.addressee) {
+        wx.hideLoading();
+        wx.showToast({
+          title: "请输入提货人",
+          icon: "none",
+        });
+        this.setData({
+          btnLoading: false,
+        });
+        return;
+      }
+
+      postData.addressee = this.data.addressee;
+      postData.phone = this.data.phone;
     }
-    postData.address_id = this.data.curAddressData.address_id;
 
     console.log(postData);
 
@@ -316,10 +339,6 @@ Page({
     this.setData({
       peisongType: e.detail.value,
     });
-    this.processYunfei();
-    if (e.detail.value == "zq") {
-      this.fetchShops();
-    }
   },
   dyChange(e) {
     this.setData({
@@ -356,7 +375,7 @@ Page({
 
     this.setData({
       bindMobileStatus: res.data.phone ? 1 : 2, // 账户绑定的手机号码状态
-      mobile: res.data.phone,
+      phone: res.data.phone,
     });
   },
   async getPhoneNumber(e) {
@@ -380,7 +399,7 @@ Page({
     });
 
     this.setData({
-      mobile: result.data,
+      phone: result.data,
       bindMobileStatus: 1,
     });
   },
@@ -470,6 +489,31 @@ Page({
       }, 1500);
     } else if (this.data.payway == "2") {
       console.log("调微信支付");
+
+      const res = JSON.parse(result.data);
+      // 发起支付
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: res.signType,
+        paySign: res.paySign,
+        fail: function (err) {
+          console.error(err);
+          wx.showToast({
+            title: "支付失败:" + err,
+          });
+        },
+        success: function () {
+          // 提示支付成功
+          wx.showToast({
+            title: "支付成功",
+          });
+          wx.redirectTo({
+            url: "/pages/order-list/index",
+          });
+        },
+      });
     }
   },
 });
