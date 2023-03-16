@@ -1,4 +1,8 @@
-page,view,image,input,textarea {
+page,
+view,
+image,
+input,
+textarea {
   display: block;
   box-sizing: border-box;
 }
@@ -72,7 +76,7 @@ form {
   padding: 30rpx 0 25rpx 30rpx;
 }
 
-.goods-list  .a-goods {
+.goods-list .a-goods {
   width: 720rpx;
   margin-left: 30rpx;
   display: flex;
@@ -81,7 +85,7 @@ form {
   padding: 30rpx 30rpx 30rpx 0;
 }
 
-.goods-list  .a-goods .img-box {
+.goods-list .a-goods .img-box {
   width: 160rpx;
   height: 160rpx;
   overflow: hidden;
@@ -94,7 +98,7 @@ form {
   height: 160rpx;
 }
 
-.goods-list  .a-goods .text-box {
+.goods-list .a-goods .text-box {
   width: 510rpx;
   box-sizing: border-box;
   padding-top: 10rpx;
@@ -220,7 +224,7 @@ form {
   border-radius: 0;
 }
 
-.jiesuan-box  .left-price {
+.jiesuan-box .left-price {
   display: flex;
   width: 500rpx;
   justify-content: flex-end;
@@ -244,7 +248,6 @@ form {
 .cell-group {
   margin-top: 16rpx;
 }
-
 
 .login-box .logo {
   width: 200rpx;
@@ -270,18 +273,27 @@ form {
   margin: 88rpx 32rpx;
 }
 
-.radio-wrapper{
+.radio-wrapper {
   text-align: center;
-  padding: 40rpx 80rpx;
+  display: flex;
+  padding: 40rpx 100rpx;
+  width: 600rpx;
 }
 
 .radio-wrapper .van-radio {
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
 }
 
-.bth-wrapper{
+.bth-wrapper {
   text-align: center;
 }
 .bth-wrapper .van-button--normal {
   padding: 0 60px;
+}
+.bth-wrapper .van-button {
+  border: none;
+}
+
+.bth-wrapper .van-dialog__confirm .van-button{
+  color: #1989fa;
 }

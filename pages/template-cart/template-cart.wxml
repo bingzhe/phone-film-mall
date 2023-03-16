@@ -12,9 +12,9 @@
         <view class="a-goods-conts {{item.active? 'active':''}}" bindtouchstart="touchS" bindtouchmove="touchM"
           bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
           <view class="goods-info">
-            <!-- <view class="radio-box">
+            <view class="radio-box">
               <radio checked="{{ item.selected }}" bindtap="radioClick" data-index="{{index}}" />
-            </view> -->
+            </view>
             <view class="img-box">
               <image mode="aspectFill" src="{{item.pic_url}}" class="img" />
             </view>
@@ -43,10 +43,14 @@
   </view>
   <view class="jiesuan-box">
     <view class="left-price">
+      <radio checked="{{ allSelect }}" bindtap="radioAllClick">全选</radio>
+
       <view class="total">合计：¥ {{totalPrice}}</view>
     </view>
     <view class="to-pay-btn">
-      <navigator url="/pages/to-pay-order/index?shopCarType={{shopCarType}}">去结算</navigator>
+      <!-- <navigator url="/pages/to-pay-order/index?shopCarType={{shopCarType}}">去结算</navigator> -->
+      <view bind:tap="handleToPay">去结算</view>
     </view>
+    
   </view>
 </template>

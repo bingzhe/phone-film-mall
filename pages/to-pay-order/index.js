@@ -102,6 +102,7 @@ Page({
     paywaySelectShow: false,
     payway: "2",
     order_no: "",
+    selectCartIds: [],
   },
   onShow() {
     this.doneShow();
@@ -110,14 +111,17 @@ Page({
     //购物车下单
     const result = await getCartList({ token: wx.getStorageSync("token") });
     let totalPrice = 0;
+    const goodslist = result.data.filter((goods) => {
+      return this.data.selectCartIds.indexOf(String(goods.cart_id)) != -1;
+    });
 
-    result.data.forEach((item) => {
+    goodslist.forEach((item) => {
       item.pic_url = `${BASE_URL}${item.goods_img}`;
       totalPrice += item.price;
     });
 
     this.setData({
-      goodsList: result.data,
+      goodsList: goodslist,
       totalPrice: totalPrice,
     });
 
@@ -125,10 +129,12 @@ Page({
   },
 
   onLoad(e) {
+    const selectCartIds = e.selectCartIds.split(",");
     const nowDate = new Date();
     let _data = {
       isNeedLogistics: 1,
       dateStart: nowDate.format("yyyy-MM-dd h:m:s"),
+      selectCartIds,
     };
     this.setData(_data);
     this.getUserApiInfo();

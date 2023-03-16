@@ -125,9 +125,9 @@
 }
 
 .goods-info .text-box .buy-num {
-  width: 164rpx;
-  height: 48rpx;
-  line-height: 48rpx;
+  width: 200rpx;
+  height: 58rpx;
+  line-height: 58rpx;
   position: absolute;
   right: 30rpx;
   bottom: 0;
@@ -138,11 +138,11 @@
 }
 
 .goods-info .text-box .buy-num .jian-btn {
-  width: 48rpx;
+  width: 58rpx;
   height: 100%;
   background-color: #F2F3F5;
   border-radius: 6rpx;
-  line-height: 46rpx;
+  line-height: 56rpx;
   font-size: 18px;
   color: #323233;
 }
@@ -154,17 +154,17 @@
   border-top: 1rpx solid #eee;
   color: #ccc;
   border-radius: 6rpx;
-  line-height: 48rpx;
+  line-height: 58rpx;
   font-size: 16px;
   color: #323233;
 }
 
 .goods-info .text-box .buy-num .jia-btn {
-  width: 48rpx;
+  width: 58rpx;
   height: 100%;
   border-radius: 6rpx;
   background-color: #F2F3F5;
-  line-height: 48rpx;
+  line-height: 58rpx;
   font-size: 16px;
   color: #323233;
 }
@@ -172,16 +172,17 @@
   background-color: #f5f5f9;
   color: #ccc;
   border-radius: 6rpx;
-  line-height: 48rpx;
+  line-height: 58rpx;
   font-size: 16px;
   color: #323233;
 }
 .goods-info .text-box .buy-num input {
   width: 68rpx;
-  height: 48rpx;
-  min-height: 48rpx;
+  height: 58rpx;
+  min-height: 58rpx;
   text-align: center;
   font-size: 24rpx;
+  margin: 0 5rpx;
 }
 .goods-info .img-box .img {
   width: 160rpx;

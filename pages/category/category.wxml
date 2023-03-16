@@ -5,7 +5,7 @@
   bind:search="bindconfirm"
   use-right-icon-slot
 >
-  <van-icon slot="right-icon" name="scan" bind:click="searchscan"></van-icon>
+  <!-- <van-icon slot="right-icon" name="scan" bind:click="searchscan"></van-icon> -->
 </van-search>
 <view class="main">
   <scroll-view

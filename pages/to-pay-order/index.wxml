@@ -101,9 +101,7 @@
 
 <van-popup
   show="{{paywaySelectShow}}"
-  position="bottom"
   round
-  custom-style="height: 30%"
 >
 <view class="radio-wrapper">
   <van-radio-group value="{{ payway }}" bind:change="onPaywayChange">
@@ -112,8 +110,8 @@
   </van-radio-group>
 </view>
 
-  <view class="bth-wrapper">
-    <van-button type="default" bind:click="paywaySelectCancel">取消</van-button>
-    <van-button type="primary" bind:click="paywaySelectConfirm">确定</van-button>    
+  <view class="bth-wrapper van-hairline--top">
+    <van-button class="van-dialog__cancel" type="default " bind:click="paywaySelectCancel">取消</van-button>
+    <van-button class="van-dialog__confirm" type="default" bind:click="paywaySelectConfirm">确定</van-button>    
   </view>
 </van-popup>

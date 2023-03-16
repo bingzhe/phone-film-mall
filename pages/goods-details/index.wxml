@@ -86,6 +86,8 @@
             min="{{ buyNumMin }}"
             max="{{ buyNumMax }}"
             bind:change="stepChange"
+            input-width="40px"
+            button-size="32px"
           ></van-stepper>
         </view>
       </van-cell>
