@@ -111,7 +111,11 @@
 </view>
 
   <view class="bth-wrapper van-hairline--top">
-    <van-button class="van-dialog__cancel" type="default " bind:click="paywaySelectCancel">取消</van-button>
-    <van-button class="van-dialog__confirm" type="default" bind:click="paywaySelectConfirm">确定</van-button>    
+    <view>
+      <van-button class="van-dialog__cancel" type="default" block bind:click="paywaySelectCancel">取消</van-button>
+    </view>
+    <view>
+      <van-button class="van-dialog__confirm" type="primary" block bind:click="paywaySelectConfirm">确定</van-button>    
+    </view>
   </view>
 </van-popup>

@@ -285,15 +285,11 @@ form {
 }
 
 .bth-wrapper {
-  text-align: center;
+  display: flex;
 }
-.bth-wrapper .van-button--normal {
-  padding: 0 60px;
+.bth-wrapper view {
+  flex: 1;
 }
 .bth-wrapper .van-button {
-  border: none;
-}
-
-.bth-wrapper .van-dialog__confirm .van-button{
-  color: #1989fa;
+  border-radius: 0;
 }

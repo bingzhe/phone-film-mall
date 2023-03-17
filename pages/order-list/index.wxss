@@ -126,11 +126,13 @@
   color: #e64340;
   margin-bottom: 20rpx;
 }
+
 .radio-wrapper {
+  box-sizing: border-box;
   text-align: center;
   display: flex;
   padding: 40rpx 100rpx;
-  width: 400rpx;
+  width: 600rpx;
 }
 
 .radio-wrapper .van-radio {
@@ -138,15 +140,11 @@
 }
 
 .bth-wrapper {
-  text-align: center;
+  display: flex;
 }
-.bth-wrapper .van-button--normal {
-  padding: 0 60px;
+.bth-wrapper view {
+  flex: 1;
 }
 .bth-wrapper .van-button {
-  border: none;
-}
-
-.bth-wrapper .van-dialog__confirm .van-button {
-  color: #1989fa;
+  border-radius: 0;
 }
