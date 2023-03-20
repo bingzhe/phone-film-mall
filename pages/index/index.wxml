@@ -63,3 +63,22 @@
   </view>
  </view>
 
+<view class="service-icon-wrapper"> 
+  <van-icon name="phone-circle-o" size="40px" color="#999" bind:click="onKefupopupOpen"/>
+</view>
+
+ <van-popup
+  show="{{kefuPopupShow}}"
+  closeable
+  bind:close="onKefupopupClose"
+  round
+>
+  <view class="kefuPopupwrapper">
+    <view class="kefu-title">微信客服</view>
+    <view class="kefu-qrcode-wrapper">
+      <image class="kefu-qrcode" src="{{kefuQrcode}}" mode="aspectFill" lazy-load="true" bind:tap="kefuWxPreview"/>
+    </view>
+    <view class="kefu-title">客服电话</view>
+    <view class="kefu-phone" bind:tap="kefuCallPhone">{{kefuPhone}}</view>
+  </view>
+</van-popup>

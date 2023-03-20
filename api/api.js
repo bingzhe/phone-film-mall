@@ -29,6 +29,8 @@ const getBanner = (params) => request("/Index/getBanner", params, "POST");
 // 资讯列表
 const getAnnouncement = (params) =>
   request("/Index/getAnnouncement", params, "POST");
+// 获取客服
+const getKefu = (params) => request("/index/getKefu", params, "POST");
 
 // 获取用户默认地址
 const getDefaultAddress = (params) =>
@@ -72,8 +74,7 @@ const saveUsername = (params) =>
 
 // --文件上传--
 // 文件上传
-const fileCommonUpload = (filePath) =>
-  uploadFile("/Upload/index", filePath);
+const fileCommonUpload = (filePath) => uploadFile("/Upload/index", filePath);
 
 module.exports = {
   loginApi,
@@ -106,4 +107,5 @@ module.exports = {
   quxiaoOrder,
   receiptOrder,
   saveUsername,
+  getKefu,
 };

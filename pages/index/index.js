@@ -6,6 +6,7 @@ import {
   getGoodsIndex,
   getBanner,
   getAnnouncement,
+  getKefu,
 } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
@@ -24,6 +25,10 @@ Page({
     curPage: 1,
     pageSize: 20,
     noticeList: [],
+
+    kefuPopupShow: false,
+    kefuPhone: "",
+    kefuQrcode: "",
   },
   tabClick(e) {
     // 商品分类点击
@@ -117,6 +122,7 @@ Page({
     this.getGoodsRecommend();
 
     that.getNotice();
+    this.getKefu();
     // 读取系统参数
     this.readConfigVal();
     getApp().configLoadOK = () => {
@@ -228,6 +234,18 @@ Page({
       noticeList: noticeList,
     });
   },
+  async getKefu() {
+    const result = await getKefu();
+    console.log(result);
+
+    const kefuPhone = result.data.phone;
+    const kefuQrcode = `${BASE_URL}${result.data.qrcode}`;
+
+    this.setData({
+      kefuPhone,
+      kefuQrcode,
+    });
+  },
   // onReachBottom: function () {},
   // onPullDownRefresh: function () {
   //   wx.stopPullDownRefresh();
@@ -243,5 +261,25 @@ Page({
     // wx.navigateTo({
     //   url: "/pages/notice/show?id=" + id,
     // });
+  },
+  onKefupopupOpen() {
+    this.setData({
+      kefuPopupShow: true,
+    });
+  },
+  onKefupopupClose() {
+    this.setData({
+      kefuPopupShow: false,
+    });
+  },
+  kefuWxPreview(e) {
+    wx.previewImage({
+      urls: [this.data.kefuQrcode], // 需要预览的图片http链接列表
+    });
+  },
+  kefuCallPhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.kefuPhone,
+    });
   },
 });

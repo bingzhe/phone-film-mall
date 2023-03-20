@@ -29,18 +29,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.getLocation({
-      type: 'gcj02', //wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-      success: (res) => {
-        this.data.latitude = res.latitude
-        this.data.longitude = res.longitude
-        this.fetchShops(res.latitude, res.longitude, '')
-      },
-      fail(e){
-        console.error(e)
-        AUTH.checkAndAuthorize('scope.userLocation')
-      }
-    })    
+    // wx.getLocation({
+    //   type: 'gcj02', //wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+    //   success: (res) => {
+    //     this.data.latitude = res.latitude
+    //     this.data.longitude = res.longitude
+    //     this.fetchShops(res.latitude, res.longitude, '')
+    //   },
+    //   fail(e){
+    //     console.error(e)
+    //     AUTH.checkAndAuthorize('scope.userLocation')
+    //   }
+    // })    
   },
   async fetchShops(latitude, longitude, kw){
     const res = await WXAPI.fetchShops({

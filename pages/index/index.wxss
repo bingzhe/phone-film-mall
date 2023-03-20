@@ -15,7 +15,7 @@
 .search input {
   display: block;
   box-sizing: border-box;
-  background: #F7F8FA;
+  background: #f7f8fa;
   height: 62rpx;
   border-radius: 20rpx;
   padding-left: 20rpx;
@@ -34,7 +34,7 @@
 
 .search-placeholder {
   font-size: 14px;
-  color: #A9A6A6;
+  color: #a9a6a6;
   line-height: 62rpx;
 }
 
@@ -237,7 +237,7 @@
   overflow: hidden;
   margin-bottom: 24rpx;
   border-radius: 5px;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   padding-bottom: 10rpx;
 }
 
@@ -267,7 +267,7 @@
 .goods-box .goods-price {
   overflow: hidden;
   font-size: 34rpx;
-  color: #F20C32;
+  color: #f20c32;
   margin-left: 24rpx;
 }
 
@@ -341,7 +341,7 @@
   width: 720rpx;
   margin: auto;
   margin-top: 20rpx;
-  background-color: #FFF;
+  background-color: #fff;
   position: relative;
 }
 
@@ -499,7 +499,7 @@
 }
 
 .van-count-down {
-  color: #E14962 !important;
+  color: #e14962 !important;
   font-size: 12px !important;
   font-weight: 400;
 }
@@ -513,7 +513,7 @@
 .miaosha-price-btn .msbtn {
   width: 170rpx;
   height: 60rpx;
-  background: linear-gradient(156deg, #FF7863 0%, #FF211A 100%);
+  background: linear-gradient(156deg, #ff7863 0%, #ff211a 100%);
   border-radius: 34rpx;
   border: none !important;
   line-height: 60rpx !important;
@@ -537,7 +537,7 @@
   width: 696rpx;
   margin-left: 27rpx;
   height: 279rpx;
-  background: #D8D8D8;
+  background: #d8d8d8;
   border-radius: 18px;
 }
 
@@ -563,17 +563,17 @@
 }
 
 .van-progress__portion {
-  background: #FF211A !important;
+  background: #ff211a !important;
 }
 
 .van-progress__pivot {
-  color: #E14962 !important;
+  color: #e14962 !important;
 }
 
 .kjbtn {
   width: 170rpx;
   height: 60rpx;
-  background: linear-gradient(156deg, #FF7863 0%, #FF211A 100%) !important;
+  background: linear-gradient(156deg, #ff7863 0%, #ff211a 100%) !important;
   border-radius: 34rpx !important;
   border: none !important;
   line-height: 60rpx !important;
@@ -583,7 +583,7 @@
 .ptbtn {
   width: 170rpx;
   height: 60rpx;
-  background: linear-gradient(156deg, #FF7863 0%, #FF211A 100%) !important;
+  background: linear-gradient(156deg, #ff7863 0%, #ff211a 100%) !important;
   border-radius: 34rpx !important;
   border: none !important;
   line-height: 60rpx !important;
@@ -605,4 +605,34 @@
 }
 .pingtuantag {
   margin-left: 16rpx;
+}
+
+.service-icon-wrapper {
+  background-color: #fff;
+  position: fixed;
+  bottom: 20rpx;
+  left: 20rpx;
+  border-radius: 50%;
+}
+.kefuPopupwrapper {
+  box-sizing: border-box;
+  padding: 60rpx;
+}
+
+.kefu-title {
+  font-size: 18px;
+  margin-bottom: 10rpx;
+}
+
+.kefu-qrcode {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.kefu-phone {
+  font-size: 18px;
+}
+
+.kefu-qrcode-wrapper {
+  margin-bottom: 30rpx;
 }
