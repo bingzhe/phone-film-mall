@@ -1,5 +1,5 @@
 <template name="video-template">
-	<live-pusher
+	<!-- <live-pusher
 		class="pusher-video"
 		id="pusher"
 		autopush="{{true}}"
@@ -10,7 +10,7 @@
 		enable-mic="{{true}}"
 		bindstatechange="_pusherStateChangeHandler"
 		bindaudiovolumenotify="_pusherAudioVolumeNotify"
-	/>
+	/> -->
 	<view wx:for="{{streamList}}" wx:key="streamID" class="view-container player-container">
 		<live-player
 			class="{{'player'+streamList.length}}"

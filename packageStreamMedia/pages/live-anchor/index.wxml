@@ -1,5 +1,5 @@
-<live-pusher id="pusher" beauty='{{ beauty }}' url="{{ liveRoomsInfo.roomInfo.pushUrl }}"
- mode="FHD" autopush="true" style='width:100vw;height:100vh' waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg" />
+<!-- <live-pusher id="pusher" beauty='{{ beauty }}' url="{{ liveRoomsInfo.roomInfo.pushUrl }}"
+ mode="FHD" autopush="true" style='width:100vw;height:100vh' waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg" /> -->
 
 <cover-view style="width:100vw;height:100vh" class="outer" catchtap="hidePeoples">
   <cover-view style="height:{{ customBarHeight }}px" class="back">

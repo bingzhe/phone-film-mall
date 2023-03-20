@@ -15,7 +15,7 @@
                 </view>
             </image>
         </view>
-        <live-pusher
+        <!-- <live-pusher
         class="pusher-audio"
         id="pusher"
         mode="RTC"
@@ -26,7 +26,7 @@
         enable-mic="{{true}}"
         bindstatechange="_pusherStateChangeHandler"
         bindaudiovolumenotify="_pusherAudioVolumeNotify"
-        />
+        /> -->
         <view wx:for="{{streamList}}" wx:key="streamID" class="view-container player-container player-audio">
         <live-player
             class="player-audio" 

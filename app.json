@@ -56,7 +56,7 @@
     "pages/notagree/index",
     "pages/my/user-code"
   ],
-  "requiredPrivateInfos": ["getLocation", "chooseAddress", "chooseLocation"],
+  "requiredPrivateInfos": ["chooseAddress"],
   "subpackages": [
     {
       "root": "packageStreamMedia",
@@ -135,11 +135,6 @@
       }
     ]
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "获取离你最近的门店"
-    }
-  },
   "usingComponents": {
     "fuwuxieyi": "/components/fuwuxieyi/index",
     "goods-pop": "/components/goods-pop/index",
@@ -174,7 +169,6 @@
     "van-calendar": "@vant/weapp/calendar/index",
     "van-switch": "@vant/weapp/switch/index",
     "van-rate": "@vant/weapp/rate/index",
-    "van-uploader": "@vant/weapp/uploader/index",
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
     "van-image": "@vant/weapp/image/index",

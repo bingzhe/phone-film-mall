@@ -22,7 +22,7 @@
     clearable
   />
   <view style="margin-top:16rpx;padding-left:32rpx;">
-    <van-uploader
+    <!-- <van-uploader
       accept="media"
       multiple
       upload-text="图片/视频"
@@ -30,7 +30,7 @@
       file-list="{{ picsList }}"
       bind:after-read="afterPicRead"
       bind:delete="afterPicDel"
-    />
+    /> -->
   </view>
   <van-field
     model:value="{{ content }}"

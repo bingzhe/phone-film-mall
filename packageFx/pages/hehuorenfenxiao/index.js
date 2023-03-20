@@ -540,87 +540,87 @@ Page({
   },
   // =====================保存推荐二维码图片到手机==========================
   saveToMobile() { //下载二维码到手机
-    wx.canvasToTempFilePath({
-      canvasId: 'firstCanvas',
-      success: function (res) {
-        let tempFilePath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: tempFilePath,
-          success: (res) => {
-            wx.showModal({
-              content: '二维码已保存到手机相册',
-              showCancel: false,
-              confirmText: '知道了',
-              confirmColor: '#333'
-            })
-          },
-          fail: (res) => {
-            wx.showToast({
-              title: res.errMsg,
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        })
-      }
-    })
+    // wx.canvasToTempFilePath({
+    //   canvasId: 'firstCanvas',
+    //   success: function (res) {
+    //     let tempFilePath = res.tempFilePath
+    //     wx.saveImageToPhotosAlbum({
+    //       filePath: tempFilePath,
+    //       success: (res) => {
+    //         wx.showModal({
+    //           content: '二维码已保存到手机相册',
+    //           showCancel: false,
+    //           confirmText: '知道了',
+    //           confirmColor: '#333'
+    //         })
+    //       },
+    //       fail: (res) => {
+    //         wx.showToast({
+    //           title: res.errMsg,
+    //           icon: 'none',
+    //           duration: 2000
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
   },
 
   // =====================保存固定二维码图片到手机==========================
   saveOri() {
-    let that = this
-    //若二维码未加载完毕，加个动画提高用户体验
-    wx.showToast({
-     icon: 'loading',
-     title: '正在保存图片',
-     duration: 1000
-    })
-    //判断用户是否授权"保存到相册"
-    wx.getSetting({
-     success (res) {
-      //没有权限，发起授权
-      if (!res.authSetting['scope.writePhotosAlbum']) {
-       wx.authorize({
-        scope: 'scope.writePhotosAlbum',
-        success () {//用户允许授权，保存图片到相册
-         that.savePhoto();
-        },
-        fail () {//用户点击拒绝授权，跳转到设置页，引导用户授权
-         wx.openSetting({
-          success () {
-           wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success() {
-             that.savePhoto();
-            }
-           })
-          }
-         })
-        }
-       })
-      } else {//用户已授权，保存到相册
-       that.savePhoto()
-      }
-     }
-    })
+    // let that = this
+    // //若二维码未加载完毕，加个动画提高用户体验
+    // wx.showToast({
+    //  icon: 'loading',
+    //  title: '正在保存图片',
+    //  duration: 1000
+    // })
+    // //判断用户是否授权"保存到相册"
+    // wx.getSetting({
+    //  success (res) {
+    //   //没有权限，发起授权
+    //   if (!res.authSetting['scope.writePhotosAlbum']) {
+    //    wx.authorize({
+    //     scope: 'scope.writePhotosAlbum',
+    //     success () {//用户允许授权，保存图片到相册
+    //      that.savePhoto();
+    //     },
+    //     fail () {//用户点击拒绝授权，跳转到设置页，引导用户授权
+    //      wx.openSetting({
+    //       success () {
+    //        wx.authorize({
+    //         scope: 'scope.writePhotosAlbum',
+    //         success() {
+    //          that.savePhoto();
+    //         }
+    //        })
+    //       }
+    //      })
+    //     }
+    //    })
+    //   } else {//用户已授权，保存到相册
+    //    that.savePhoto()
+    //   }
+    //  }
+    // })
    },
   //保存图片到相册，提示保存成功
    savePhoto() {
     let that = this
-    wx.downloadFile({
-     url: 'https://dcdn.it120.cc/2021/01/24/928782d2-062c-4a45-9911-b331fdf38ed9.jpg',
-     success: function (res) {
-      wx.saveImageToPhotosAlbum({
-       filePath: res.tempFilePath,
-       success(res) {
-        wx.showToast({
-         title: '保存成功',
-         icon: "success",
-         duration: 1000
-        })
-       }
-      })
-     }
-    })
+    // wx.downloadFile({
+    //  url: 'https://dcdn.it120.cc/2021/01/24/928782d2-062c-4a45-9911-b331fdf38ed9.jpg',
+    //  success: function (res) {
+    //   wx.saveImageToPhotosAlbum({
+    //    filePath: res.tempFilePath,
+    //    success(res) {
+    //     wx.showToast({
+    //      title: '保存成功',
+    //      icon: "success",
+    //      duration: 1000
+    //     })
+    //    }
+    //   })
+    //  }
+    // })
    },
 })

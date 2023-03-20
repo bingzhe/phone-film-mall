@@ -31,20 +31,20 @@ Page({
   onShow() {
   },
   chooseInvoiceTitle(){
-    wx.chooseInvoiceTitle({
-      success: (res) => {
-        this.setData({
-          wxInvoiceInfo: res
-        })    
-      },
-      fail: err => {
-        console.error(err);
-        wx.showToast({
-          title: '读取失败',
-          icon: 'none'
-        })
-      }
-    })
+    // wx.chooseInvoiceTitle({
+    //   success: (res) => {
+    //     this.setData({
+    //       wxInvoiceInfo: res
+    //     })    
+    //   },
+    //   fail: err => {
+    //     console.error(err);
+    //     wx.showToast({
+    //       title: '读取失败',
+    //       icon: 'none'
+    //     })
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面隐藏

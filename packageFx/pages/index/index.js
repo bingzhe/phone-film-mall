@@ -256,23 +256,23 @@ Page({
       canvasId: 'firstCanvas',
       success: function (res) {
         let tempFilePath = res.tempFilePath
-        wx.saveImageToPhotosAlbum({
-          filePath: tempFilePath,
-          success: (res) => {
-            wx.showModal({
-              content: '二维码已保存到手机相册',
-              showCancel: false,
-              confirmText: '知道了',
-              confirmColor: '#333'
-            })
-          },
-          fail: (res) => {
-            wx.showToast({
-              title: res.errMsg,
-              icon: 'none'
-            })
-          }
-        })
+        // wx.saveImageToPhotosAlbum({
+        //   filePath: tempFilePath,
+        //   success: (res) => {
+        //     wx.showModal({
+        //       content: '二维码已保存到手机相册',
+        //       showCancel: false,
+        //       confirmText: '知道了',
+        //       confirmColor: '#333'
+        //     })
+        //   },
+        //   fail: (res) => {
+        //     wx.showToast({
+        //       title: res.errMsg,
+        //       icon: 'none'
+        //     })
+        //   }
+        // })
       }
     })
   },

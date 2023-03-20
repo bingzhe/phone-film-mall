@@ -64,7 +64,7 @@
       />
     </van-cell-group>
     <view style="margin-top:16rpx;padding-left:32rpx;">
-      <van-uploader
+      <!-- <van-uploader
         accept="image"
         multiple
         upload-text="上传图片"
@@ -72,7 +72,7 @@
         file-list="{{ picsList }}"
         bind:after-read="afterPicRead"
         bind:delete="afterPicDel"
-      />
+      /> -->
     </view>
 
     <view>

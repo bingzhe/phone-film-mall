@@ -579,29 +579,29 @@ Page({
   },
   savePosterPic() {
     const _this = this
-    wx.saveImageToPhotosAlbum({
-      filePath: this.data.posterImg,
-      success: (res) => {
-        wx.showModal({
-          content: '已保存到手机相册',
-          showCancel: false,
-          confirmText: '知道了',
-          confirmColor: '#333'
-        })
-      },
-      complete: () => {
-        _this.setData({
-          showposterImg: false
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          title: res.errMsg,
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // wx.saveImageToPhotosAlbum({
+    //   filePath: this.data.posterImg,
+    //   success: (res) => {
+    //     wx.showModal({
+    //       content: '已保存到手机相册',
+    //       showCancel: false,
+    //       confirmText: '知道了',
+    //       confirmColor: '#333'
+    //     })
+    //   },
+    //   complete: () => {
+    //     _this.setData({
+    //       showposterImg: false
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     wx.showToast({
+    //       title: res.errMsg,
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
   },
   previewImage(e) {
     const url = e.currentTarget.dataset.url

@@ -116,7 +116,7 @@
         <van-button type="primary" block bind:click="startService">开始配送</van-button>
       </view>
       <view class="btn-row" wx:if="{{peisongOrderDetail.orderInfo.status==3 && peisongOrderDetail.orderInfo.uid == peisongMemberInfo.id}}">
-        <van-uploader multiple file-list="{{ fileList }}" bind:after-read="afterRead" bind:delete="deletePic" />
+        <!-- <van-uploader multiple file-list="{{ fileList }}" bind:after-read="afterRead" bind:delete="deletePic" /> -->
         <van-button type="danger" block bind:click="endService">配送完成</van-button>
       </view>
     </block>
