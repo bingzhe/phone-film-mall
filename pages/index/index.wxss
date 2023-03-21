@@ -254,9 +254,11 @@
 
 .goods-box .goods-title {
   width: 280rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #333;
   margin-left: 24rpx;
+  margin-bottom: 10rpx;
+  min-height: 70rpx;
 }
 
 .goods-box .goods-price-container {
@@ -589,6 +591,7 @@
   line-height: 60rpx !important;
   font-size: 13px !important;
 }
+
 .adPositionIndexPop {
   width: 100vw;
   height: 100vh;
@@ -597,12 +600,15 @@
   justify-content: center;
   align-items: center;
 }
+
 .adPositionIndexPop image {
   width: 420rpx;
 }
+
 .adPositionIndexPop .close {
   margin-top: 32rpx;
 }
+
 .pingtuantag {
   margin-left: 16rpx;
 }
@@ -610,10 +616,11 @@
 .service-icon-wrapper {
   background-color: #fff;
   position: fixed;
-  bottom: 20rpx;
+  bottom: 130rpx;
   left: 20rpx;
   border-radius: 50%;
 }
+
 .kefuPopupwrapper {
   box-sizing: border-box;
   padding: 60rpx;
@@ -635,4 +642,15 @@
 
 .kefu-qrcode-wrapper {
   margin-bottom: 30rpx;
+}
+
+.stock-sales-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+}
+
+.stock-sales-info .num {
+  font-size: 24rpx;
+  color: #999999;
 }

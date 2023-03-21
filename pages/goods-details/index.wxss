@@ -676,31 +676,53 @@ swiper-item image {
   margin: 32rpx 0 0 32rpx;
   border-radius: 16rpx;
 }
+
 .characteristic {
   padding: 8rpx 32rpx;
   color: #666;
   font-size: 26rpx;
 }
+
 .van-progress {
   margin: 32rpx 0;
 }
+
 .flex {
   display: flex;
   width: 100vw;
 }
+
 .kjbutton {
   flex: 1;
   padding: 30rpx;
 }
+
 .kjlj {
   display: flex;
   background-color: #ffffff;
   padding: 0 32rpx;
   align-items: center;
 }
+
 .kjlj-l {
   width: 88rpx;
   height: 88rpx;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.stock-sales-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+  background: #fff;
+}
+
+.stock-sales-info .num {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.van-goods-action {
+  z-index: 999;
 }

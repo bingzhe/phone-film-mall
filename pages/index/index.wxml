@@ -1,15 +1,12 @@
 <van-sticky>
-<view class="search-container">
-  <view class="search" style="height:{{navHeight}}px;padding-top:{{navTop}}px">
-    <view class="search-title" src="../../images/actLogo/ytlogo.png"
-      style="height:{{navHeight-navTop-5}}px;line-height:{{navHeight-navTop-5}}px;width:{{132/52*(navHeight-navTop-5)}}px;">
-      {{mallName}}
+  <view class="search-container">
+    <view class="search" style="height:{{navHeight}}px;padding-top:{{navTop}}px">
+      <view class="search-title" src="../../images/actLogo/ytlogo.png" style="height:{{navHeight-navTop-5}}px;line-height:{{navHeight-navTop-5}}px;width:{{132/52*(navHeight-navTop-5)}}px;">
+        {{mallName}}
+      </view>
+      <input placeholder-class="search-placeholder" style="width:{{menuButtonObject.left-18-((132/52)*(navHeight-navTop-5))}}px" type="text" placeholder="输入关键词搜索" disabled value="{{name}}" bindinput="bindinput" bindtap="goSearch"></input>
     </view>
-    <input placeholder-class="search-placeholder"
-      style="width:{{menuButtonObject.left-18-((132/52)*(navHeight-navTop-5))}}px" type="text" placeholder="输入关键词搜索" disabled
-      value="{{name}}" bindinput="bindinput" bindtap="goSearch"></input>
   </view>
-</view>
 </van-sticky>
 
 <view class="swiper-container">
@@ -23,8 +20,7 @@
 <view class="category-container">
   <view class="category-box">
     <view class="category-list" wx:for="{{categories}}" wx:key="category_id">
-      <view class="category-column" bindtap="tabClick"
-        data-id="{{item.category_id}}">
+      <view class="category-column" bindtap="tabClick" data-id="{{item.category_id}}">
         <image mode="aspectFill" class="category-imgbox" src="{{item.icon}}"></image>
         <view class="category-title">{{item.cate_name}}</view>
       </view>
@@ -34,8 +30,7 @@
 <view class="notice-box" wx:if="{{noticeList.length>0}}">
   <swiper class="notice_swiper" vertical autoplay circular interval="8000">
     <swiper-item wx:for="{{noticeList}}" wx:key="id">
-      <van-notice-bar mode="link" text="{{ item.text }}" background="#FFFFFF"
-        data-id="{{ item.id }}" speed="30" bind:click="goNotice">
+      <van-notice-bar mode="link" text="{{ item.text }}" background="#FFFFFF" data-id="{{ item.id }}" speed="30" bind:click="goNotice">
         <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png"></image>
       </van-notice-bar>
     </swiper-item>
@@ -43,14 +38,17 @@
 </view>
 <view class="container">
   <view class="space"></view>
-  <van-divider custom-class="table-text" wx:if="{{goodsRecommend.length > 0}}"
-    contentPosition="center">
+  <van-divider custom-class="table-text" wx:if="{{goodsRecommend.length > 0}}" contentPosition="center">
     <image class="table-icon-tuijian" src="../../images/home/recommend.png"></image> 爆品推荐
   </van-divider>
   <view class="goods-container" wx:if="{{goodsRecommend.length > 0}}">
     <view class="goods-box" wx:for="{{goodsRecommend}}" wx:key="goods_id" bindtap="toDetailsTap" data-id="{{item.goods_id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">
       <view class="img-box">
         <image src="{{item.goods_img_url}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="stock-sales-info">
+        <view class="num">库存{{item.stock}}</view>
+        <view class="num">销量{{item.sales}}</view>
       </view>
       <view class="goods-title van-multi-ellipsis--l2">{{item.goods_name}}</view>
       <!-- <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view> -->
@@ -61,22 +59,17 @@
       </view>
     </view>
   </view>
- </view>
-
-<view class="service-icon-wrapper"> 
-  <van-icon name="phone-circle-o" size="40px" color="#999" bind:click="onKefupopupOpen"/>
 </view>
 
- <van-popup
-  show="{{kefuPopupShow}}"
-  closeable
-  bind:close="onKefupopupClose"
-  round
->
+<view class="service-icon-wrapper">
+  <van-icon name="phone-circle-o" size="40px" color="#999" bind:click="onKefupopupOpen" />
+</view>
+
+<van-popup show="{{kefuPopupShow}}" closeable bind:close="onKefupopupClose" round>
   <view class="kefuPopupwrapper">
     <view class="kefu-title">微信客服</view>
     <view class="kefu-qrcode-wrapper">
-      <image class="kefu-qrcode" src="{{kefuQrcode}}" mode="aspectFill" lazy-load="true" bind:tap="kefuWxPreview"/>
+      <image class="kefu-qrcode" src="{{kefuQrcode}}" mode="aspectFill" lazy-load="true" bind:tap="kefuWxPreview" />
     </view>
     <view class="kefu-title">客服电话</view>
     <view class="kefu-phone" bind:tap="kefuCallPhone">{{kefuPhone}}</view>

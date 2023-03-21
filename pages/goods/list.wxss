@@ -128,6 +128,7 @@ page,view,image,input {
 .list2 .goods-info .title {
   color: #333;
   font-size: 30rpx;
+  min-height: 80rpx;
 }
 .list2 .goods-info .price {
   color: #FF3B30;
