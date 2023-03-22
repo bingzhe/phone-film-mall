@@ -213,15 +213,16 @@ Page({
     });
   },
   onShareAppMessage: function () {
-    return {
-      title:
-        '"' +
-        wx.getStorageSync("mallName") +
-        '" ' +
-        wx.getStorageSync("share_profile"),
-      path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
-    };
+    // return {
+    //   title:
+    //     '"' +
+    //     wx.getStorageSync("mallName") +
+    //     '" ' +
+    //     wx.getStorageSync("share_profile"),
+    //   path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
+    // };
   },
+  onShareTimeline() {},
   async getNotice() {
     const result = await getAnnouncement();
 
