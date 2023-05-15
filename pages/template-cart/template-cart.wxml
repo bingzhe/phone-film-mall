@@ -1,56 +1,102 @@
 <template name="no-goods">
   <van-empty description="购物车空空如也～">
-    <van-button round type="danger" size="small" class="bottom-button" bind:click="toIndexPage">
+    <van-button
+      round
+      type="danger"
+      size="small"
+      class="bottom-button"
+      bind:click="toIndexPage"
+    >
       去逛逛
     </van-button>
   </van-empty>
 </template>
 
 <template name="cart-goods-list">
-  <view class="goodsList"> <!-- 自营 -->
-      <view class="a-gooods" wx:for="{{goodsList}}" wx:key="key" >
-        <view class="a-goods-conts {{item.active? 'active':''}}" bindtouchstart="touchS" bindtouchmove="touchM"
-          bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
-          <view class="goods-info">
-            <view class="radio-box">
-              <radio checked="{{ item.selected }}" bindtap="radioClick" data-index="{{index}}" />
+  <view class="goodsList">
+    <!-- 自营 -->
+    <view class="a-gooods" wx:for="{{ goodsList }}" wx:key="key">
+      <view
+        class="a-goods-conts {{ item.active ? 'active' : '' }}"
+        bindtouchstart="touchS"
+        bindtouchmove="touchM"
+        bindtouchend="touchE"
+        data-index="{{ index }}"
+        style="{{ item.left }}"
+      >
+        <view class="goods-info">
+          <view class="radio-box">
+            <radio
+              checked="{{ item.selected }}"
+              bindtap="radioClick"
+              data-index="{{ index }}"
+            />
+          </view>
+          <view class="img-box">
+            <image mode="aspectFill" src="{{ item.pic_url }}" class="img" />
+          </view>
+          <view class="text-box">
+            <view class="goods-title">{{ item.goods_name }}</view>
+            <view class="goods-label">
+              <view>{{ item.spec_name }}</view>
             </view>
-            <view class="img-box">
-              <image mode="aspectFill" src="{{item.pic_url}}" class="img" />
-            </view>
-            <view class="text-box">
-              <view class="goods-title">{{item.goods_name}}</view>
-              <view class="goods-label">
-                <view>{{item.spec_name}}</view>
-              </view>
-              <view class="goods-price">¥ {{item.price}}</view>
-              <view class="buy-num">
-                <view class="jian-btn" catchtap="jianBtnTap" data-index="{{index}}">-</view>
-                <input type="number" value="{{item.goods_num}}" data-key="{{item.cart_id}}" data-spec="{{item.spec_id}}" bindinput="changeCarNumber" />
-                <view class="jia-btn {{item.number==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap"
-                  data-index="{{index}}">+</view>
-              </view>
+            <view class="goods-price">¥ {{ item.price }}</view>
+            <view class="buy-num">
+              <view
+                class="jian-btn"
+                catchtap="jianBtnTap"
+                data-index="{{ index }}"
+                >-</view
+              >
+              <input
+                type="number"
+                value="{{ item.goods_num }}"
+                data-key="{{ item.cart_id }}"
+                data-spec="{{ item.spec_id }}"
+                bindinput="changeCarNumber"
+              />
+              <view
+                class="jia-btn {{ item.number == curTouchGoodStore ? 'disabled' : ''}}"
+                catchtap="jiaBtnTap"
+                data-index="{{ index }}"
+                >+</view
+              >
             </view>
           </view>
-          <view class="delete-btn" data-key="{{item.cart_id}}" catchtap="delItem">
-            删除
-          </view>
-          <!-- <view class="del-icon">
+        </view>
+        <view
+          class="delete-btn"
+          data-key="{{ item.cart_id }}"
+          catchtap="delItem"
+        >
+          删除
+        </view>
+        <!-- <view class="del-icon">
             <van-icon name="close" size="32rpx" color="#000" data-key="{{item.cart_id}}" catchtap="delItem" />
           </view> -->
-        </view>
       </view>
+    </view>
   </view>
   <view class="jiesuan-box">
     <view class="left-price">
-      <radio checked="{{ allSelect }}" bindtap="radioAllClick">全选</radio>
+      <view>
+        <radio checked="{{ allSelect }}" bindtap="radioAllClick">全选</radio>
+        <van-button
+          style="margin-left:20rpx"
+          size="small"
+          round
+          color="linear-gradient(to right, #FF972A, #FF444A)"
+          bind:click="onBatchDel"
+        >
+          删除
+        </van-button>
+      </view>
 
-      <view class="total">合计：¥ {{totalPrice}}</view>
+      <view class="total">合计：¥ {{ totalPrice }}</view>
     </view>
     <view class="to-pay-btn">
       <!-- <navigator url="/pages/to-pay-order/index?shopCarType={{shopCarType}}">去结算</navigator> -->
       <view bind:tap="handleToPay">去结算</view>
     </view>
-    
   </view>
 </template>

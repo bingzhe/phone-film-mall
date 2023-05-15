@@ -197,6 +197,7 @@ Page({
     });
 
     gooodsInfo.spec_list.forEach((item, i) => {
+      item.cart_num = 0;
       if (i == 0) {
         item.active = true;
         selectSizePrice = item.price;

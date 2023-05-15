@@ -137,6 +137,31 @@ Page({
 
     this.shippingCarInfo();
   },
+  onBatchDel() {
+    const selectCartIds = this.data.goodsList
+      .filter((item) => item.selected)
+      .map((item) => item.cart_id)
+      .join(",");
+
+    if (!selectCartIds) {
+      wx.showToast({
+        title: "请选择要删除的商品",
+        icon: "none",
+      });
+      return;
+    }
+    const that = this;
+
+    // 弹出删除确认
+    wx.showModal({
+      content: "确定要删除商品吗？",
+      success: (res) => {
+        if (res.confirm) {
+          that.delItemDone(selectCartIds);
+        }
+      },
+    });
+  },
   async jiaBtnTap(e) {
     const index = e.currentTarget.dataset.index;
     const item = this.data.goodsList[index];
@@ -202,7 +227,7 @@ Page({
     item.selected = !item.selected;
 
     const allSelect = this.data.goodsList.some((item) => item.selected);
-    
+
     let totalPrice = 0;
 
     this.data.goodsList.forEach((item) => {
