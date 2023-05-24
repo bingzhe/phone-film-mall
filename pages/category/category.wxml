@@ -12,12 +12,12 @@
     class="category-container"
     scroll-y="true"
     scroll-with-animation="true"
-    scroll-into-view="{{ aaa }}"
-  >
+    >
+    <!-- scroll-into-view="{{ aaa }}" -->
     <van-sidebar custom-class="sidebar-l" active-key="{{ activeCategory }}">
       <van-sidebar-item
         wx:if="{{ item.level == 1 }}"
-        id="category{{ item.category_id }}"
+        id="category{{ item.cate_id }}"
         wx:for="{{ firstCategories }}"
         wx:key="id"
         data-idx="{{ index }}"
@@ -34,16 +34,14 @@
     bindscrolltolower="goodsGoBottom"
   >
     <block wx:if="{{ categoryMod == 2 }}">
-      <van-cell
-        title="{{ categorySelected.cate_name }}"
-        ></van-cell>
-        <!-- is-link -->
-        <!-- url="/pages/goods/list?categoryId={{ categorySelected.category_id }}" -->
+      <van-cell title="{{ categorySelected.cate_name }}"></van-cell>
+      <!-- is-link -->
+      <!-- url="/pages/goods/list?categoryId={{ categorySelected.cate_id }}" -->
       <view class="small-category-box">
         <navigator
           wx:for="{{ secondCategories }}"
-          wx:key="category_id"
-          url="/pages/goods/list?categoryId={{ item.category_id }}"
+          wx:key="cate_id"
+          url="/pages/goods/list?categoryId={{ item.cate_id }}"
         >
           <!-- url="/pages/goods/list?categoryId={{ item.id }}" -->
           <view class="small-category">

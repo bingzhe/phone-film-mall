@@ -13,7 +13,7 @@ Page({
     activeCategory: 0,
     categorySelected: {
       // cate_name: "",
-      // category_id: "",
+      // cate_id: "",
     },
     secondCategories: [],
     currentGoods: [],
@@ -47,9 +47,9 @@ Page({
     let categorySelected = this.data.categorySelected;
 
     const firstCategories = result.data;
-    if (categorySelected.category_id) {
+    if (categorySelected.cate_id) {
       activeCategory = firstCategories.findIndex((ele) => {
-        return ele.category_id == categorySelected.category_id;
+        return ele.cate_id == categorySelected.cate_id;
       });
       categorySelected = firstCategories[activeCategory];
     } else {
@@ -72,7 +72,7 @@ Page({
     // https://www.yuque.com/apifm/nu0f75/wg5t98
 
     const result = await getCateList({
-      category_id: this.data.categorySelected.category_id,
+      cate_id: this.data.categorySelected.cate_id,
     });
     wx.hideLoading();
 
@@ -148,7 +148,7 @@ Page({
     const _categoryId = wx.getStorageSync("_categoryId");
     wx.removeStorageSync("_categoryId");
     if (_categoryId) {
-      this.data.categorySelected.category_id = _categoryId;
+      this.data.categorySelected.cate_id = _categoryId;
       this.categories();
     }
   },
