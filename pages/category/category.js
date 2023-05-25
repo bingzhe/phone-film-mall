@@ -1,4 +1,4 @@
-import { getCateList } from "../../api/api.js";
+import { getCateList, getGoodsList } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 Page({
@@ -8,20 +8,22 @@ Page({
   data: {
     categoryMod: 2,
 
-    categories: [],
     firstCategories: [],
     activeCategory: 0,
     categorySelected: {
       // cate_name: "",
-      // cate_id: "",
+      // category_id: "",
     },
     secondCategories: [],
-    currentGoods: [],
+    secondCategorySelected: {},
+
+    page: 1, // 商品第几页
+    goods: [],
+
     onLoadStatus: true,
     scrolltop: 0,
 
     skuCurGoods: undefined,
-    page: 1,
     pageSize: 20,
   },
   /**
@@ -34,22 +36,23 @@ Page({
     // this.setData({
     //   categoryMod: wx.getStorageSync("categoryMod"),
     // });
-    this.categories();
+    this.getCategory();
   },
-  async categories() {
+  async getCategory() {
     wx.showLoading({
       title: "",
     });
 
     const result = await getCateList();
     wx.hideLoading();
+
     let activeCategory = 0;
     let categorySelected = this.data.categorySelected;
 
     const firstCategories = result.data;
-    if (categorySelected.cate_id) {
+    if (categorySelected.category_id) {
       activeCategory = firstCategories.findIndex((ele) => {
-        return ele.cate_id == categorySelected.cate_id;
+        return ele.category_id == categorySelected.category_id;
       });
       categorySelected = firstCategories[activeCategory];
     } else {
@@ -62,6 +65,27 @@ Page({
       firstCategories,
       categorySelected,
     });
+
+    this.getSecondCategory();
+  },
+  async getSecondCategory() {
+    wx.showLoading({
+      title: "",
+    });
+
+    const result = await getCateList({
+      category_id: this.data.categorySelected.category_id,
+    });
+    wx.hideLoading();
+
+    const secondCategories = result.data;
+    const secondCategorySelected = secondCategories[0] || {};
+
+    this.setData({
+      secondCategories: secondCategories,
+      secondCategorySelected,
+    });
+
     this.getGoodsList();
   },
   async getGoodsList() {
@@ -69,23 +93,42 @@ Page({
       title: "",
     });
 
-    // https://www.yuque.com/apifm/nu0f75/wg5t98
+    const _data = {
+      order: 1,
+      by: 1,
+      page: this.data.page,
+      size: 10,
+      category_id: this.data.secondCategorySelected.category_id,
+    };
 
-    const result = await getCateList({
-      cate_id: this.data.categorySelected.cate_id,
-    });
+    const result = await getGoodsList(_data);
     wx.hideLoading();
 
-    const secondCategories = result.data.map((item) => {
-      item.icon = `${BASE_URL}${item.icon_url}`;
+    if (this.data.goods.length == result.data.count && this.data.page != 1) {
+      wx.showToast({
+        title: "没有更多了",
+        icon: "none",
+      });
+      return;
+    }
 
+    const goodslist = result.data.list.map((item) => {
+      item.goodsUrl = "/pages/goods-details/index?id=" + item.goods_id;
+      item.pic = `${BASE_URL}${item.goods_img}`;
       return item;
     });
 
-    this.setData({
-      secondCategories: secondCategories,
-    });
+    if (this.data.page == 1) {
+      this.setData({
+        goods: goodslist,
+      });
+    } else {
+      this.setData({
+        goods: this.data.goods.concat(goodslist),
+      });
+    }
   },
+
   async onCategoryClick(e) {
     const idx = e.target.dataset.idx;
     if (idx == this.data.activeCategory) {
@@ -98,23 +141,22 @@ Page({
 
     this.setData({
       page: 1,
-      secondCategoryId: "",
       activeCategory: idx,
       categorySelected,
       scrolltop: 0,
     });
-    this.getGoodsList();
+    this.getSecondCategory();
   },
   onSecondCategoryClick(e) {
-    const idx = e.detail.index;
-    let secondCategoryId = "";
-    if (idx) {
-      // 点击了具体的分类
-      secondCategoryId = this.data.categorySelected.childs[idx - 1].id;
-    }
+    const idx = e.target.dataset.idx;
+
+    // 点击了具体的分类
+    const secondCategorySelected = this.data.secondCategories[idx];
+
     this.setData({
+      scrolltop: 0,
       page: 1,
-      secondCategoryId,
+      secondCategorySelected,
     });
     this.getGoodsList();
   },
@@ -126,16 +168,16 @@ Page({
       url: "/pages/goods/list?name=" + this.data.inputVal,
     });
   },
-  onShareAppMessage() {
-    return {
-      title:
-        '"' +
-        wx.getStorageSync("mallName") +
-        '" ' +
-        wx.getStorageSync("share_profile"),
-      path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
-    };
-  },
+  // onShareAppMessage() {
+  //   return {
+  //     title:
+  //       '"' +
+  //       wx.getStorageSync("mallName") +
+  //       '" ' +
+  //       wx.getStorageSync("share_profile"),
+  //     path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
+  //   };
+  // },
   onShow() {
     // AUTH.checkHasLogined().then((isLogined) => {
     //   if (isLogined) {
@@ -145,36 +187,17 @@ Page({
     //     TOOLS.showTabBarBadge(); // 获取购物车数据，显示TabBarBadge
     //   }
     // });
-    const _categoryId = wx.getStorageSync("_categoryId");
-    wx.removeStorageSync("_categoryId");
-    if (_categoryId) {
-      this.data.categorySelected.cate_id = _categoryId;
-      this.categories();
-    }
+    // const _categoryId = wx.getStorageSync("_categoryId");
+    // wx.removeStorageSync("_categoryId");
+    // if (_categoryId) {
+    //   this.data.categorySelected.category_id = _categoryId;
+    //   this.getCategory();
+    // }
+
+    this.getCategory();
   },
   goodsGoBottom() {
     this.data.page++;
     this.getGoodsList();
-  },
-  adPositionClick(e) {
-    const url = e.target.dataset.url;
-    if (url) {
-      wx.navigateTo({
-        url: url,
-      });
-    }
-  },
-  searchscan() {
-    wx.scanCode({
-      scanType: ["barCode", "qrCode", "datamatrix", "pdf417"],
-      success: (res) => {
-        this.setData({
-          inputVal: res.result,
-        });
-        wx.navigateTo({
-          url: "/pages/goods/list?name=" + res.result,
-        });
-      },
-    });
   },
 });

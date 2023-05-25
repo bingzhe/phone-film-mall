@@ -13,9 +13,11 @@ const getOpenid = (params) => request("/Wxlogin/getOpenid", params, "POST");
 const logoutApi = (params) => request("/sys/logout", params, "POST");
 
 // 分类列表
-const getCateList = (params) => request("/Goods/getCateList", params, "POST");
+const getCateList = (params) =>
+  request("/Ordergoods/getCateList", params, "POST");
 // 商品列表
-const getGoodsList = (params) => request("/Goods/getGoodsList", params, "POST");
+const getGoodsList = (params) =>
+  request("/Ordergoods/getGoodsList", params, "POST");
 // 商品详情
 const getGoodsInfo = (params) => request("/Goods/getGoodsInfo", params, "POST");
 // 用户信息
