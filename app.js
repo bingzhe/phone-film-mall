@@ -1,6 +1,7 @@
 const WXAPI = require("apifm-wxapi");
 const CONFIG = require("config.js");
 const AUTH = require("utils/auth");
+
 App({
   onLaunch: function () {
     const subDomain = wx.getExtConfigSync().subDomain;
@@ -86,7 +87,7 @@ App({
 
   onShow(e) {
     // 自动登录
-    AUTH.login();
+    // AUTH.login();
   },
   globalData: {
     isConnected: true,

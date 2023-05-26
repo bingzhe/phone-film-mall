@@ -1,0 +1,183 @@
+<wxs module="filter" src="./toLowerCase.wxs"></wxs>
+
+<van-notice-bar
+  wx:if="{{ showNotice }}"
+  left-icon="volume-o"
+  text="{{ text }}"
+/>
+
+<view class="swiper-wrap">
+  <t-swiper
+    wx:if="{{ imgSrcs.length > 0 }}"
+    current="{{ current }}"
+    autoplay="{{ autoplay }}"
+    duration="{{ duration }}"
+    interval="{{ interval }}"
+    navigation="{{ navigation }}"
+  >
+    <t-swiper-item wx:for="{{ imgSrcs }}" wx:key="index">
+      <t-image
+        src="{{ item.img }}"
+        t-class="t-image__swiper"
+        bind:tap="navToActivityDetail"
+      ></t-image>
+    </t-swiper-item>
+  </t-swiper>
+</view>
+
+<view class="phone-modal-wrapper">
+  <view class="modal-wrapper">
+    <text class="tag">本机型号</text>
+    <text class="modal">{{ phoneModal }}</text>
+  </view>
+  <view class="icon-wrapper" bind:tap="handleSearchCus">
+    <!-- <t-button
+      theme="primary"
+      theme="danger"
+      t-class="search-cus-button"
+      bind:tap="handleSearchCus"
+    >
+      本机查找
+    </t-button> -->
+    <t-image
+      src="../../../images/search-btn.jpg"
+      t-class="t-image__search-btn"
+      bind:tap="navToActivityDetail"
+    />
+    <!-- <t-icon name="chevron-right" size="xl" color="#999" /> -->
+  </view>
+</view>
+
+<van-sticky>
+  <view class="search-wrapper">
+    <t-search
+      model:value="{{ searchValue }}"
+      t-class-input="t-search__input"
+      t-class-input-container="t-search__input-container"
+      placeholder="请输入手机型号"
+      bind:change="handleSearchChange"
+      bind:clear="handleSearchChange"
+    >
+      <t-button
+        theme="primary"
+        slot="action-text"
+        t-class="search-button"
+        bind:tap="handleSearchClick"
+        >搜索</t-button
+      >
+    </t-search>
+  </view>
+
+  <view wx:if="{{ showTabs }}" class="tabs-wrapper">
+    <view
+      wx:for="{{ tabList }}"
+      wx:for-index="index"
+      class="tab-item {{ item.cate_id == tabIndex ? 'tab-item_active' : '' }}"
+      bind:tap="ontabItemClick"
+      data-cateid="{{ item.cate_id }}"
+      >{{ item.cate_name }}</view
+    >
+  </view>
+</van-sticky>
+
+<view wx:if="{{ !showTabs }}" class="search-list-wrapper">
+  <view
+    wx:for="{{ searchNameList }}"
+    wx:for-item="name"
+    class="search-name-item"
+    bind:tap="handleSearchNameItemClick"
+    data-name="{{ name }}"
+  >
+    <!-- prettier-ignore-attribute -->
+    <text
+      wx:for="{{ name }}"
+      class="{{filter.toLowerCase(item) === filter.toLowerCase(searchValue)? 'is-color': ''}}"
+      >{{ item }}</text
+    >
+  </view>
+</view>
+
+<view wx:if="{{ showTabs }}">
+  <view class="film-list-wrapper">
+    <view class="file-item-wrapper" wx:for="{{ list }}" wx:key="index">
+      <view class="film-item">
+        <view class="film-icon-wrapper">
+          <view>
+            <t-image
+              t-class="goods-img"
+              src="{{ rootUrl }}{{ item.goods_img }}"
+            ></t-image>
+            <view class="goods-name">{{ item.goods_name }}</view>
+          </view>
+        </view>
+        <view class="film-content">
+          <view class="film-title">{{ item.cate_name }}</view>
+          <view class="firm-selects">
+            <view
+              class="firm-select"
+              wx:for="{{ item.selectList }}"
+              wx:for-item="selectSpec"
+            >
+              {{ selectSpec.spec_name }}</view
+            >
+          </view>
+          <!-- prettier-ignore-attribute -->
+          <view wx:if="{{item.expand}}" class="phone-modal-list">
+            <view
+              class="modal {{ modal.is_checked == 1 ? 'select' : '' }}"
+              wx:for="{{ item.spec_list }}"
+              wx:for-item="modal"
+              wx:key="index"
+            >
+              {{ modal.spec_name }}
+            </view>
+          </view>
+
+          <view class="film-price">
+            <text>零售指导价：¥{{ item.price }}元</text>
+          </view>
+        </view>
+      </view>
+      <view
+        class="toggle-expand"
+        data-index="{{ index }}"
+        bind:tap="toggleExpand"
+      >
+        <t-icon
+          wx:if="{{ item.expand }}"
+          name="caret-down-small"
+          size="48rpx"
+          color="#999999"
+        />
+        <t-icon
+          wx:if="{{ !item.expand }}"
+          name="caret-up-small"
+          size="48rpx"
+          color="#999999"
+        />
+      </view>
+    </view>
+  </view>
+
+  <view class="film-list-empty" wx:if="{{ list.length === 0 }}">
+    <t-image
+      src="../../../images/empty-list.png"
+      t-class="empty-class"
+    ></t-image>
+    <view class="empty-tip">暂无该手机型号膜</view>
+  </view>
+</view>
+
+<van-popup
+  show="{{ popupShow }}"
+  bind:close="onClose"
+  round
+  custom-style="top: 40%"
+>
+  <view class="popup-content">
+    <image src="{{ rootUrl }}{{ newProductBg }}" />
+
+    <view class="popup-title">新款更新</view>
+    <rich-text nodes="{{ newProductContent }}" />
+  </view>
+</van-popup>

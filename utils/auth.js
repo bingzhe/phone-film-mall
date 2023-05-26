@@ -1,18 +1,6 @@
 const WXAPI = require("apifm-wxapi");
-import { getOpenid } from "../api/api";
 
-async function checkSession() {
-  return new Promise((resolve, reject) => {
-    wx.checkSession({
-      success() {
-        return resolve(true);
-      },
-      fail() {
-        return resolve(false);
-      },
-    });
-  });
-}
+import { getOpenid, getUsersinfo } from "../api/api";
 
 async function bindSeller() {
   const token = wx.getStorageSync("token");
@@ -29,37 +17,79 @@ async function bindSeller() {
   });
 }
 
+// 检查登录
+async function checkLogined() {
+  wx.login({
+    success: async function (res) {
+      const code = res.code;
+
+      const openIdResult = await getOpenid({ code: code });
+      const token = openIdResult.data;
+      const openid = openIdResult.data.openid;
+
+      // openid存在 跳转登录页
+      if (openid) {
+        wx.navigateTo({
+          url: "/pages/login/login",
+        });
+        return;
+      }
+
+      const userResult = await getUsersinfo({ token });
+
+      const status = userResult.data.status;
+
+      // TODO 恢复判断条件 判断是否登录 status   0待审核1正常2禁止登录
+      if (status == 0 || status == 2) {
+      // if (status == 2) {
+        wx.redirectTo({
+          url: `/pages/disabled-mall/disabled-mall?status=${status}`,
+        });
+      }
+      wx.setStorageSync("token", token);
+    },
+    fail: function (err) {
+      console.log("检查登录", err);
+      wx.removeStorageSync("token");
+    },
+  });
+}
+
 // 检测登录状态，返回 true / false
 async function checkHasLogined() {
   const token = wx.getStorageSync("token");
+
   if (!token) {
     return false;
   }
-  // const loggined = await checkSession()
-  // if (!loggined) {
-  //   wx.removeStorageSync('token')
-  //   return false
-  // }
-  // const checkTokenRes = await WXAPI.checkToken(token)
-  // if (checkTokenRes.code != 0) {
-  //   wx.removeStorageSync('token')
-  //   return false
-  // }
+
   return true;
 }
 
-async function wxaCode() {
-  return new Promise((resolve, reject) => {
+// 注册时候取Openid
+async function registerGetOpenid() {
+  return new Promise(function (resolve, reject) {
     wx.login({
-      success(res) {
-        return resolve(res.code);
+      success: async function (res) {
+        const code = res.code;
+
+        const openIdResult = await getOpenid({ code: code });
+        const openid = openIdResult.data.openid;
+
+        // if (token) {
+        //   wx.showToast({
+        //     title: "该微信以及注册过账号",
+        //     icon: "none",
+        //     duration: 1500,
+        //   });
+        // }
+
+        if (openid) {
+          resolve(openid);
+        }
       },
-      fail() {
-        wx.showToast({
-          title: "获取code失败",
-          icon: "none",
-        });
-        return resolve("获取code失败");
+      fail: function (err) {
+        reject(err);
       },
     });
   });
@@ -92,7 +122,6 @@ async function authorize() {
       success: function (res) {
         const code = res.code;
         getOpenid({ code: code }).then(function (res) {
-          console.log("getOpenid", res);
           wx.setStorageSync("token", res.data);
         });
       },
@@ -156,10 +185,11 @@ async function checkAndAuthorize(scope) {
 
 module.exports = {
   checkHasLogined: checkHasLogined,
-  wxaCode: wxaCode,
   login: login,
   loginOut: loginOut,
   checkAndAuthorize: checkAndAuthorize,
   authorize: authorize,
   bindSeller: bindSeller,
+  checkLogined: checkLogined,
+  registerGetOpenid: registerGetOpenid,
 };

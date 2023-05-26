@@ -8,7 +8,10 @@ const getDictItemsApi = (code) =>
 const loginApi = (params) => request("/sys/wxLogin", params, "POST");
 const loginCheckApi = (params) => request("/sys/wxLoginCheck", params, "POST");
 const getOpenid = (params) => request("/Wxlogin/getOpenid", params, "POST");
+const phoneLoginApi = (params) => request("/Login/login", params, "POST");
 
+// 注册
+const registerApi = (params) => request("/Login/Register", params, "POST");
 // 退出登录
 const logoutApi = (params) => request("/sys/logout", params, "POST");
 
@@ -19,7 +22,7 @@ const getCateList = (params) =>
 const getGoodsList = (params) =>
   request("/Ordergoods/getGoodsList", params, "POST");
 // 商品详情
-const getGoodsInfo = (params) => request("/Goods/getGoodsInfo", params, "POST");
+const getGoodsInfo = (params) => request("/Ordergoods/getGoodsInfo", params, "POST");
 // 用户信息
 const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
 // 保存手机号
@@ -62,7 +65,7 @@ const createOrder = (params) => request("/Order/CreateOrder", params, "POST");
 // 订单列表
 const getOrderList = (params) => request("/Order/GetOrderList", params, "POST");
 // 订单详情
-const getOrderInfo = (params) => request("/Order/GetOrderInfo", params, "POST");
+const getOrderInfo = (params) => request("/Order/getOrderInfo", params, "POST");
 // 订单支付
 const goodsOrderPay = (params) =>
   request("/OrderPay/goodsOrderPay", params, "POST");
@@ -110,4 +113,6 @@ module.exports = {
   receiptOrder,
   saveUsername,
   getKefu,
+  registerApi,
+  phoneLoginApi,
 };

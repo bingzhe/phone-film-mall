@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/film-index/film-index",
     "pages/category/category",
     "pages/index/index",
     "pages/notice/index",
@@ -54,7 +55,13 @@
     "pages/recycle/order-detail",
     "pages/card/logs",
     "pages/notagree/index",
-    "pages/my/user-code"
+    "pages/my/user-code",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/yhxy/yhxy",
+    "pages/ysxy/ysxy",
+    "pages/disabled-mall/disabled-mall",
+    "pages/film-video/film-video"
   ],
   "requiredPrivateInfos": ["chooseAddress"],
   "subpackages": [
@@ -98,17 +105,30 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#23b7eb",
+    "navigationBarTitleText": "歌宸型号搜索",
+    "navigationBarTextStyle": "white",
     "onReachBottomDistance": 50
   },
   "tabBar": {
+    "custom": true,
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
+      {
+        "pagePath": "pages/film-index/film-index",
+        "iconPath": "images/nav/home-off.png",
+        "selectedIconPath": "images/nav/home-on.png",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/film-video/film-video",
+        "iconPath": "images/nav/video-off.png",
+        "selectedIconPath": "images/nav/video-on.png",
+        "text": "教程"
+      },
       {
         "pagePath": "pages/category/category",
         "iconPath": "images/nav/fl-off.png",

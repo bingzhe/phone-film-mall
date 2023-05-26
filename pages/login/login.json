@@ -1,0 +1,11 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#23b7eb",
+  "navigationBarTitleText": "登录",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-image": "@vant/weapp/image/index"
+  }
+}

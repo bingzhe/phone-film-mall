@@ -42,6 +42,10 @@ Page({
     this.onShow();
   },
   onShow: function () {
+    if (typeof this.getTabBar === "function" && this.getTabBar()) {
+      this.getTabBar().setMallTab(2);
+    }
+
     this.shippingCarInfo();
   },
   async shippingCarInfo() {

@@ -1,5 +1,6 @@
 import { getCateList, getGoodsList } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
+import { checkLogined } from "../../utils/auth.js";
 
 Page({
   /**
@@ -36,7 +37,14 @@ Page({
     // this.setData({
     //   categoryMod: wx.getStorageSync("categoryMod"),
     // });
+
+    checkLogined();
     this.getCategory();
+  },
+  onShow() {
+    if (typeof this.getTabBar === "function" && this.getTabBar()) {
+      this.getTabBar().setMallTab(1);
+    }
   },
   async getCategory() {
     wx.showLoading({
@@ -178,24 +186,6 @@ Page({
   //     path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
   //   };
   // },
-  onShow() {
-    // AUTH.checkHasLogined().then((isLogined) => {
-    //   if (isLogined) {
-    //     this.setData({
-    //       wxlogin: isLogined,
-    //     });
-    //     TOOLS.showTabBarBadge(); // 获取购物车数据，显示TabBarBadge
-    //   }
-    // });
-    // const _categoryId = wx.getStorageSync("_categoryId");
-    // wx.removeStorageSync("_categoryId");
-    // if (_categoryId) {
-    //   this.data.categorySelected.category_id = _categoryId;
-    //   this.getCategory();
-    // }
-
-    this.getCategory();
-  },
   goodsGoBottom() {
     this.data.page++;
     this.getGoodsList();

@@ -1,0 +1,75 @@
+page {
+  background: linear-gradient(to top, #fff 0%, #fff 40%, #23b7eb 100%);
+}
+
+.login-wrapper {
+  margin-top: 20%;
+}
+
+.loginInput {
+  height: 88rpx;
+  width: 600rpx;
+  background: #eaf0f8;
+  border-radius: 10rpx;
+  margin: 0 auto 40rpx;
+  padding: 0rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login_button {
+  height: 88rpx;
+  width: 600rpx;
+  background: linear-gradient(to right, #68cef1 0%, #23b7eb 100%);
+  border-radius: 10rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 60rpx;
+}
+.agree_img {
+  height: 36rpx;
+  width: 36rpx;
+  margin-right: 18rpx;
+}
+
+.agreen_font {
+  width: 600rpx;
+}
+.agreen_tip {
+  width: 600rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999999;
+  margin: 0 auto 50rpx;
+  box-sizing: border-box;
+}
+.placeholderClass {
+  color: #96b4dc;
+  font-size: 32rpx;
+}
+.img_box {
+  height: 100%;
+  width: 60rpx;
+}
+.codeInput {
+  height: 100%;
+  width: 70%;
+}
+
+.border-error {
+  border: 1px solid #ff3333;
+}
+
+.register-wrapper {
+  text-align: right;
+  color: #23b7eb;
+  font-size: 14px;
+  width: 600rpx;
+  margin: 10rpx auto;
+}

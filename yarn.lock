@@ -12,7 +12,7 @@ apifm-wxapi@^3.55.0:
   resolved "https://registry.npmmirror.com/apifm-wxapi/-/apifm-wxapi-3.63.0.tgz#b2352bf5e17475c2127c86e921f49ae058983823"
   integrity sha512-WLhVltKW7BhJOfJTn1JplYhM/GbZik+VeLue8L6M8W5HwlYC/kjWaxxFrexYpugf01YOkjmCJSU7l7mwk4GU9w==
 
-dayjs@^1.11.6:
+dayjs@^1.10.7, dayjs@^1.11.6:
   version "1.11.7"
   resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
   integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
@@ -21,6 +21,13 @@ mp-html@^2.3.1:
   version "2.4.2"
   resolved "https://registry.npmmirror.com/mp-html/-/mp-html-2.4.2.tgz#dfc08136d05990ac4d97b3d603c7689cbcd6a031"
   integrity sha512-MSfJh5ckuaI2uibeO4qiUl2e/j5fpXy6cmW/ZzSkb+U3rTJfMSNzODqrDwG0YWOd8BVI+tD9/jLZiBhJbMupUg==
+
+tdesign-miniprogram@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.npmmirror.com/tdesign-miniprogram/-/tdesign-miniprogram-0.11.2.tgz#5c01c8c318d05e95b96f94ded3db2eb70ab5df96"
+  integrity sha512-41UcfBsju8LT07wd8QMasZJ6k1InVOO2fRJ/OQE/oImuv8eypiLyvrbtfTSudq7brTwiNmOo/zKMhKh9CNjZxA==
+  dependencies:
+    dayjs "^1.10.7"
 
 wxa-plugin-canvas@^1.1.12:
   version "1.1.12"

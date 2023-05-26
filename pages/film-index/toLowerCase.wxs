@@ -1,0 +1,9 @@
+var filter = {
+    toLowerCase: function(value){
+        return value.toLowerCase();
+    }
+}
+
+module.exports = {
+    toLowerCase: filter.toLowerCase
+}

@@ -20,6 +20,10 @@ Page({
   },
   onLoad() {},
   onShow() {
+    if (typeof this.getTabBar === "function" && this.getTabBar()) {
+      this.getTabBar().setMallTab(3);
+    }
+
     this.getUserApiInfo();
   },
   async getUserApiInfo() {
@@ -33,7 +37,7 @@ Page({
 
     this.setData({
       // mobile: res.data.phone,
-      nick: res.data.username,
+      nick: res.data.nikename,
       avatarUrl,
     });
   },
@@ -79,7 +83,7 @@ Page({
     }
     const postData = {
       token: wx.getStorageSync("token"),
-      username: this.data.nick,
+      nikename: this.data.nick,
     };
 
     await saveUsername(postData);

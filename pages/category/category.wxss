@@ -99,8 +99,8 @@ page {
   position: relative;
 }
 .list1 .img {
-  width: 220rpx;
-  height: 220rpx;
+  width: 150rpx;
+  height: 150rpx;
   flex-shrink: 0;
 }
 .list1 .goods-info {
