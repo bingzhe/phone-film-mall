@@ -186,31 +186,32 @@ Page({
       goods_id: goodsId,
       token: wx.getStorageSync("token"),
     });
-    const gooodsInfo = result.data || {};
+    const goodsInfo = result.data || {};
 
     let selectSizePrice = 0;
     let buyNumber = 0;
-    let buyNumMax = 0;
+    let buyNumMax = goodsInfo.stock;
 
-    gooodsInfo.pics = gooodsInfo.img_list.map((item) => {
+    goodsInfo.pics = goodsInfo.img_list.map((item) => {
       return `${BASE_URL}${item}`;
     });
 
-    gooodsInfo.spec_list.forEach((item, i) => {
-      // item.cart_num = 0;
-      if (i == 0) {
-        item.active = true;
-        selectSizePrice = item.price;
-        buyNumber = item.cart_num;
-        buyNumMax = item.stock;
-      } else {
-        item.active = false;
-      }
-    });
+    console.log(goodsInfo);
+    // goodsInfo.spec_list.forEach((item, i) => {
+    //   // item.cart_num = 0;
+    //   if (i == 0) {
+    //     item.active = true;
+    //     selectSizePrice = item.price;
+    //     buyNumber = item.cart_num;
+    //     buyNumMax = item.stock;
+    //   } else {
+    //     item.active = false;
+    //   }
+    // });
 
     this.setData({
-      goodsDetail: gooodsInfo,
-      selectSizePrice: selectSizePrice,
+      goodsDetail: goodsInfo,
+      // selectSizePrice: selectSizePrice,
       buyNumber,
       buyNumMax,
     });
@@ -261,12 +262,12 @@ Page({
   },
   stepChange(event) {
     //更新spec_list
-    this.data.goodsDetail.spec_list[this.data.specSelectIndex].cart_num =
-      event.detail;
+    // this.data.goodsDetail.spec_list[this.data.specSelectIndex].cart_num =
+    //   event.detail;
 
     this.setData({
       buyNumber: event.detail,
-      goodsDetail: this.data.goodsDetail,
+      // goodsDetail: this.data.goodsDetail,
     });
   },
   // 判断当前商品是否支持某个sku的属性
@@ -314,16 +315,21 @@ Page({
    * 加入购物车
    */
   async addShopCar() {
-    const cart_list = [];
+    const cart_list = [
+      {
+        goods_num: this.data.buyNumber,
+        goods_id: this.data.goodsDetail.goods_id,
+      },
+    ];
 
-    this.data.goodsDetail.spec_list.forEach((item) => {
-      if (item.cart_num > 0) {
-        cart_list.push({
-          goods_num: item.cart_num,
-          spec_id: item.spec_id,
-        });
-      }
-    });
+    // this.data.goodsDetail.spec_list.forEach((item) => {
+    //   if (item.cart_num > 0) {
+    //     cart_list.push({
+    //       goods_num: item.cart_num,
+    //       spec_id: item.spec_id,
+    //     });
+    //   }
+    // });
 
     if (cart_list.length == 0) {
       wx.showToast({

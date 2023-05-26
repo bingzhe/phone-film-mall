@@ -186,6 +186,25 @@ Page({
   //     path: "/pages/index/index?inviter_id=" + wx.getStorageSync("uid"),
   //   };
   // },
+  async addShopCar(e) {
+    const curGood = this.data.goods.find((ele) => {
+      return ele.goods_id == e.currentTarget.dataset.id;
+    });
+    if (!curGood) {
+      return;
+    }
+    // if (curGood.stock <= 0) {
+    //   wx.showToast({
+    //     title: "已售罄~",
+    //     icon: "none",
+    //   });
+    //   return;
+    // }
+
+    this.setData({
+      skuCurGoods: curGood,
+    });
+  },
   goodsGoBottom() {
     this.data.page++;
     this.getGoodsList();

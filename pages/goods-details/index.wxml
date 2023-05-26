@@ -45,7 +45,7 @@
     <view class="goods-info">
       <view class="goods-info-top-container">
         <view class="goods-profile">
-          <view class="p"><text>¥</text> {{ selectSizePrice }}</view>
+          <view class="p"><text>¥</text> {{ goodsDetail.goods_price }}</view>
           <!-- selectSizePrice -->
         </view>
       </view>
@@ -57,14 +57,9 @@
     </view>
 
     <view class="size-label-box2">
-      <view class="label-title">选择商品规格</view>
+      <!-- <view class="label-title">选择商品规格</view>
       <view class="size-label-box">
-        <!-- wx:for="{{ goodsDetail.properties }}"
-        wx:for-item="property"
-        wx:for-index="idx"
-        wx:key="id" -->
         <block>
-          <!-- <view class="label">规格</view> -->
           <view class="label-item-box">
             <view
               class="label-item {{ item.active ? 'active' : '' }}"
@@ -73,7 +68,6 @@
               bindtap="labelItemTap"
               data-propertychildindex="{{ index }}"
             >
-              <!-- data-propertyindex="{{ idx }}" -->
               {{ item.spec_name }}
 
               <view wx:if="{{ item.cart_num > 0 }}" class="label-item-badge">
@@ -82,7 +76,7 @@
             </view>
           </view>
         </block>
-      </view>
+      </view> -->
       <van-cell title="购买数量">
         <view>
           <van-stepper
@@ -96,13 +90,13 @@
         </view>
       </van-cell>
     </view>
-    <view wx:if="{{ shopSubdetail }}" class="shop-container">
+    <!-- <view wx:if="{{ shopSubdetail }}" class="shop-container">
       <image mode="aspectFill" src="{{ shopSubdetail.info.pic }}"></image>
       <view class="info">
         <view class="title">{{ shopSubdetail.info.name }}</view>
         <view class="address">{{ shopSubdetail.info.address }}</view>
       </view>
-    </view>
+    </view> -->
     <view class="goods-des-info" id="goods-des-info">
       <view class="label-title">
         <view class="left">商品详情</view>
