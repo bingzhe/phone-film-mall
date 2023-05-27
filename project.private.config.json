@@ -484,6 +484,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/disabled-mall/disabled-mall",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,6 +1,7 @@
 import { getCateList, getGoodsList } from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 import { checkLogined } from "../../utils/auth.js";
+import { getGoodsInfo, createCartBatch } from "../../api/api.js";
 
 Page({
   /**
@@ -38,10 +39,12 @@ Page({
     //   categoryMod: wx.getStorageSync("categoryMod"),
     // });
 
-    checkLogined();
+    // checkLogined();
     this.getCategory();
   },
   onShow() {
+    // checkLogined();
+
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setMallTab(1);
     }
@@ -193,6 +196,27 @@ Page({
     if (!curGood) {
       return;
     }
+
+    const goods_id = e.currentTarget.dataset.id;
+    const cart_list = [
+      {
+        goods_num: 1,
+        goods_id: goods_id,
+      },
+    ];
+
+    const params = {
+      token: wx.getStorageSync("token"),
+      cart_list: JSON.stringify(cart_list),
+    };
+
+    const result = await createCartBatch(params);
+
+    wx.showToast({
+      title: "加入购物车成功",
+      icon: "success",
+    });
+
     // if (curGood.stock <= 0) {
     //   wx.showToast({
     //     title: "已售罄~",
@@ -201,9 +225,9 @@ Page({
     //   return;
     // }
 
-    this.setData({
-      skuCurGoods: curGood,
-    });
+    // this.setData({
+    //   skuCurGoods: curGood,
+    // });
   },
   goodsGoBottom() {
     this.data.page++;

@@ -18,40 +18,44 @@ async function bindSeller() {
 }
 
 // 检查登录
-async function checkLogined() {
-  wx.login({
-    success: async function (res) {
-      const code = res.code;
+function checkLogined() {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success: async function (res) {
+        const code = res.code;
 
-      const openIdResult = await getOpenid({ code: code });
-      const token = openIdResult.data;
-      const openid = openIdResult.data.openid;
+        const openIdResult = await getOpenid({ code: code });
+        const token = openIdResult.data;
+        const openid = openIdResult.data.openid;
 
-      // openid存在 跳转登录页
-      if (openid) {
-        wx.navigateTo({
-          url: "/pages/login/login",
-        });
-        return;
-      }
+        // openid存在 跳转登录页
+        if (openid) {
+          wx.reLaunch({
+            url: "/pages/login/login",
+          });
+          return;
+        }
 
-      const userResult = await getUsersinfo({ token });
+        const userResult = await getUsersinfo({ token });
 
-      const status = userResult.data.status;
+        const status = userResult.data.status;
 
-      // TODO 恢复判断条件 判断是否登录 status   0待审核1正常2禁止登录
-      if (status == 0 || status == 2) {
-      // if (status == 2) {
-        wx.redirectTo({
-          url: `/pages/disabled-mall/disabled-mall?status=${status}`,
-        });
-      }
-      wx.setStorageSync("token", token);
-    },
-    fail: function (err) {
-      console.log("检查登录", err);
-      wx.removeStorageSync("token");
-    },
+        // TODO 恢复判断条件 判断是否登录 status   0待审核1正常2禁止登录
+        if (status == 0 || status == 2) {
+          // if (status == 2) {
+          wx.reLaunch({
+            url: `/pages/disabled-mall/disabled-mall?status=${status}`,
+          });
+        }
+        wx.setStorageSync("token", token);
+        resolve();
+      },
+      fail: function (err) {
+        console.log("检查登录", err);
+        wx.removeStorageSync("token");
+        reject();
+      },
+    });
   });
 }
 

@@ -89,7 +89,7 @@ Page({
     });
 
     setTimeout(() => {
-      wx.navigateTo({
+      wx.switchTab({
         url: "/pages/category/category",
       });
     }, 1500);
@@ -111,7 +111,7 @@ Page({
     });
   },
   goRegister() {
-    wx.switchTab({
+    wx.navigateTo({
       url: "/pages/register/register",
     });
   },

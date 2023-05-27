@@ -75,7 +75,7 @@ Page({
   },
   toIndexPage: function () {
     wx.switchTab({
-      url: "/pages/index/index",
+      url: "/pages/category/category",
     });
   },
 
@@ -174,7 +174,7 @@ Page({
 
     await createCart({
       token,
-      spec_id: item.spec_id,
+      goods_id: item.goods_id,
       goods_num: number,
       cart_id: item.cart_id,
     });
@@ -202,7 +202,7 @@ Page({
 
     await createCart({
       token,
-      spec_id: item.spec_id,
+      goods_id: item.goods_id,
       goods_num: number,
       cart_id: item.cart_id,
     });
@@ -211,13 +211,13 @@ Page({
   },
   async changeCarNumber(e) {
     const cart_id = e.currentTarget.dataset.key;
-    const spec_id = e.currentTarget.dataset.spec;
+    const goods_id = e.currentTarget.dataset.spec;
     const number = e.detail.value;
     const token = wx.getStorageSync("token");
 
     await createCart({
       token,
-      spec_id,
+      goods_id,
       goods_num: number,
       cart_id,
     });
@@ -282,7 +282,7 @@ Page({
       return;
     }
 
-    wx.redirectTo({
+    wx.navigateTo({
       url: "/pages/to-pay-order/index?selectCartIds=" + selectCartIds,
     });
   },

@@ -1,2 +1,3 @@
-<!--pages/disabled-mall/disabled-mall.wxml-->
-<text>pages/disabled-mall/disabled-mall.wxml</text>
+<view class="login_button" wx:if="{{status==0}}">待审核</view>
+
+<view class="login_button" wx:if="{{status==2}}">禁止登录</view>

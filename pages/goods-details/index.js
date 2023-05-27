@@ -315,6 +315,15 @@ Page({
    * 加入购物车
    */
   async addShopCar() {
+    if (this.data.buyNumber === 0) {
+      wx.showToast({
+        title: "请添加数量",
+        icon: "none",
+      });
+
+      return;
+    }
+
     const cart_list = [
       {
         goods_num: this.data.buyNumber,

@@ -2,7 +2,6 @@
   "pages": [
     "pages/film-index/film-index",
     "pages/category/category",
-    "pages/index/index",
     "pages/notice/index",
     "pages/notice/show",
     "pages/goods/list",
@@ -63,7 +62,9 @@
     "pages/disabled-mall/disabled-mall",
     "pages/film-video/film-video"
   ],
-  "requiredPrivateInfos": ["chooseAddress"],
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
   "subpackages": [
     {
       "root": "packageStreamMedia",

@@ -1,3 +1,5 @@
+import { checkLogined } from "../utils/auth.js";
+
 Component({
   data: {
     selected: 0,
@@ -26,9 +28,12 @@ Component({
   },
   attached() {},
   methods: {
-    switchTab(e) {
+    async switchTab(e) {
       const data = e.currentTarget.dataset;
       const url = data.path;
+      if (url == "/pages/category/category") {
+        await checkLogined();
+      }
       wx.switchTab({ url });
       this.setData({
         selected: data.index,

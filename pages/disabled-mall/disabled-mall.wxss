@@ -1,1 +1,16 @@
-/* pages/disabled-mall/disabled-mall.wxss */
+page {
+  background: linear-gradient(to top, #fff 0%, #fff 60%, #23b7eb 100%);
+}
+
+.login_button {
+  height: 88rpx;
+  width: 600rpx;
+  background: linear-gradient(to right, #68cef1 0%, #23b7eb 100%);
+  border-radius: 10rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 60rpx;
+  margin-top: 500rpx;
+}

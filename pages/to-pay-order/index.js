@@ -380,8 +380,8 @@ Page({
     const res = await getUsersinfo({ token: wx.getStorageSync("token") });
 
     this.setData({
-      bindMobileStatus: res.data.phone ? 1 : 2, // 账户绑定的手机号码状态
-      phone: res.data.phone,
+      bindMobileStatus: res.data.username ? 1 : 2, // 账户绑定的手机号码状态
+      phone: res.data.username,
     });
   },
   async getPhoneNumber(e) {

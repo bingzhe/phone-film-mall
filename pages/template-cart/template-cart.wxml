@@ -52,7 +52,7 @@
                 type="number"
                 value="{{ item.goods_num }}"
                 data-key="{{ item.cart_id }}"
-                data-spec="{{ item.spec_id }}"
+                data-spec="{{ item.goods_id }}"
                 bindinput="changeCarNumber"
               />
               <view

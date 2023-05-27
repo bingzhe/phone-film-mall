@@ -69,7 +69,8 @@ page {
 .register-wrapper {
   text-align: right;
   color: #23b7eb;
-  font-size: 14px;
+  font-size: 16px;
   width: 600rpx;
-  margin: 10rpx auto;
+  margin: 0rpx auto;
+  padding: 10rpx 0;
 }
