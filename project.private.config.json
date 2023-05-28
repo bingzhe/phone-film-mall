@@ -491,6 +491,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/performance-list/performance-list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

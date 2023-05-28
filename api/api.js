@@ -22,7 +22,8 @@ const getCateList = (params) =>
 const getGoodsList = (params) =>
   request("/Ordergoods/getGoodsList", params, "POST");
 // 商品详情
-const getGoodsInfo = (params) => request("/Ordergoods/getGoodsInfo", params, "POST");
+const getGoodsInfo = (params) =>
+  request("/Ordergoods/getGoodsInfo", params, "POST");
 // 用户信息
 const getUsersinfo = (params) => request("/Usersinfo/index", params, "POST");
 // 保存手机号
@@ -76,6 +77,15 @@ const receiptOrder = (params) => request("/Usersinfo/receipt", params, "POST");
 // 用户修改名称
 const saveUsername = (params) =>
   request("/Usersinfo/saveUsername", params, "POST");
+// 推广员接口
+const getPerformanceApi = (params) =>
+  request("/usersinfo/getPerformance", params, "POST");
+// 客户明细
+const getUsersListApi = (params) =>
+  request("/usersinfo/getUsersList", params, "POST");
+// 业绩明细  type=1本月
+const getPerformanceListApi = (params) =>
+  request("/usersinfo/getPerformanceList ", params, "POST");
 
 // --文件上传--
 // 文件上传
@@ -115,4 +125,7 @@ module.exports = {
   getKefu,
   registerApi,
   phoneLoginApi,
+  getPerformanceApi,
+  getUsersListApi,
+  getPerformanceListApi
 };

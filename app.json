@@ -60,7 +60,8 @@
     "pages/yhxy/yhxy",
     "pages/ysxy/ysxy",
     "pages/disabled-mall/disabled-mall",
-    "pages/film-video/film-video"
+    "pages/film-video/film-video",
+    "pages/performance-list/performance-list"
   ],
   "requiredPrivateInfos": [
     "chooseAddress"

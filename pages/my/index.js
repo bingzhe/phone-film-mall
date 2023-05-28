@@ -1,4 +1,9 @@
-import { getUsersinfo, saveUsername, fileCommonUpload } from "../../api/api.js";
+import {
+  getUsersinfo,
+  saveUsername,
+  fileCommonUpload,
+  getPerformanceApi,
+} from "../../api/api.js";
 import { BASE_URL } from "../../api/config.js";
 
 Page({
@@ -17,6 +22,8 @@ Page({
     count_id_no_transfer: 0,
     nick: undefined,
     avatarUrl: "",
+    invitation_id: "",
+    performance: {}, //推广员
   },
   onLoad() {},
   onShow() {
@@ -25,6 +32,7 @@ Page({
     }
 
     this.getUserApiInfo();
+    this.getPerformance();
   },
   async getUserApiInfo() {
     const res = await getUsersinfo({ token: wx.getStorageSync("token") });
@@ -38,6 +46,7 @@ Page({
     this.setData({
       // mobile: res.data.phone,
       nick: res.data.nikename,
+      invitation_id: res.data.invitation_id,
       avatarUrl,
     });
   },
@@ -109,9 +118,27 @@ Page({
     });
     this.getUserApiInfo();
   },
+  async getPerformance() {
+    const postData = {
+      token: wx.getStorageSync("token"),
+    };
+    const result = await getPerformanceApi(postData);
+
+    console.log(result);
+    this.setData({
+      performance: result.data,
+    });
+  },
   goUserCode() {
     wx.navigateTo({
       url: "/pages/my/user-code",
+    });
+  },
+  goPerformanceList(e) {
+    const type = e.currentTarget.dataset.type;
+    console.log(type);
+    wx.navigateTo({
+      url: `/pages/performance-list/performance-list?type=${type}`,
     });
   },
 });

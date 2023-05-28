@@ -1,0 +1,39 @@
+<view wx:for="{{ userlist }}" class="user-item">
+  <view class="img-wrapper">
+    <van-image
+      class="avatar-img"
+      src="{{ item.avatar }}"
+      width="60"
+      height="60"
+      round
+      mode="aspectFill"
+    ></van-image>
+    <!-- src="https://img.yzcdn.cn/vant/cat.jpeg" -->
+  </view>
+  <view class="info-wrapper">
+    <view
+      >客户名称：<text>{{ item.username }}</text></view
+    >
+    <view
+      >累计业绩：<text>{{ item.all_pay_price }}</text></view
+    >
+    <view
+      >注册时间：<text>{{ item.time }}</text></view
+    >
+  </view>
+</view>
+
+<view wx:for="{{ performanceList }}" class="performanc-item">
+  <view
+    >订单号：<text>{{ item.order_no }}</text></view
+  >
+  <view
+    >下单客户：<text>{{ item.username }}</text></view
+  >
+  <view
+    >时间：<text>{{ item.time }}</text></view
+  >
+  <view
+    >金额：<text>{{ item.price }}</text></view
+  >
+</view>

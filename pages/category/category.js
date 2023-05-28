@@ -43,7 +43,7 @@ Page({
     this.getCategory();
   },
   onShow() {
-    // checkLogined();
+    checkLogined();
 
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setMallTab(1);
