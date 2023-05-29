@@ -54,7 +54,7 @@
 
 .goodsList {
   width: 100%;
-  padding-bottom: 110rpx;
+  padding-bottom: 192rpx;
 }
 
 .a-gooods {
@@ -203,7 +203,7 @@
   width: 100%;
   height: 100rpx;
   position: fixed;
-  bottom: 48px;
+  bottom: 96rpx;
   left: 0;
   background-color: #FAFAFA;
   z-index: 999;

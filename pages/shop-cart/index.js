@@ -15,6 +15,8 @@ Page({
 
     goodsList: [],
     totalPrice: 0,
+
+    isIphoneX: app.globalData.isIphoneX,
   },
 
   //获取元素自适应后的实际宽度

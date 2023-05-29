@@ -3,6 +3,8 @@ import { BASE_URL } from "../../api/config.js";
 import { checkLogined } from "../../utils/auth.js";
 import { getGoodsInfo, createCartBatch } from "../../api/api.js";
 
+const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
@@ -27,6 +29,8 @@ Page({
 
     skuCurGoods: undefined,
     pageSize: 20,
+
+    isIphoneX: app.globalData.isIphoneX,
   },
   /**
    * 生命周期函数--监听页面加载

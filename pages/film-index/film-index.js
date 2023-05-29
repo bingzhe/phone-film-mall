@@ -12,6 +12,8 @@ import {
   getAnnouncementApi,
 } from "../../api/filmApi";
 
+const app = getApp();
+
 Page({
   data: {
     imgSrcs: [
@@ -59,6 +61,8 @@ Page({
     popupShow: false,
     newProductContent: "",
     newProductBg: "",
+
+    isIphoneX: app.globalData.isIphoneX,
   },
   async onLoad() {
     await this.getDeviceInfo();

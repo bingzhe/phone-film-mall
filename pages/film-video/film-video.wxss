@@ -1,4 +1,7 @@
 /* pages/video/video.wxss */
+page {
+  padding-bottom: 48px;
+}
 
 .video-page {
   margin: 20rpx 20rpx;

@@ -87,4 +87,6 @@
   </scroll-view>
 </view>
 
+<view wx:if="{{ isIphoneX }}" style="height: 20rpx"></view>
+
 <!-- <goods-pop skuCurGoodsBaseInfo="{{ skuCurGoods }}"></goods-pop> -->

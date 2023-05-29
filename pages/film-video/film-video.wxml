@@ -11,3 +11,5 @@
     </view>
   </view>
 </view>
+
+<view wx:if="{{ isIphoneX }}" style="height: 20rpx"></view>

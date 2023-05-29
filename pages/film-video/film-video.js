@@ -1,5 +1,7 @@
 import { rootUrl, getVideoListApi } from "../../api/filmApi";
 
+const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
@@ -7,6 +9,7 @@ Page({
   data: {
     videoList: [],
     rootUrl,
+    isIphoneX: app.globalData.isIphoneX,
   },
 
   /**

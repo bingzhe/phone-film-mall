@@ -3,7 +3,7 @@ page {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* padding-bottom: 1; */
+  padding-bottom: 48px;
 }
 .main {
   flex: 1;

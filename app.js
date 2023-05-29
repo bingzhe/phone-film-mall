@@ -83,6 +83,17 @@ App({
         console.log(err);
       },
     });
+
+    //获取设备信息
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        // iPhone机型有横杆的导航栏高度大于40
+        if (res.safeArea.top > 40) {
+          that.globalData.isIphoneX = true;
+        }
+      },
+    });
   },
 
   onShow(e) {
@@ -92,5 +103,6 @@ App({
   globalData: {
     isConnected: true,
     sdkAppID: CONFIG.sdkAppID,
+    isIphoneX: false, //有横杆iphone
   },
 });
