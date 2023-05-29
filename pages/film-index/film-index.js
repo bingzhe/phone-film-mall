@@ -32,7 +32,7 @@ Page({
 
     phoneModal: "",
 
-    tabIndex: 100,
+    tabIndex: 1,
 
     searchValue: "",
 
@@ -129,22 +129,22 @@ Page({
 
     if (result.code !== 200) return;
 
-    result.data.unshift({
-      cate_id: 100,
-      cate_name: "全部",
-    });
+    // result.data.unshift({
+    //   cate_id: 100,
+    //   cate_name: "全部",
+    // });
 
     this.setData({
       tabList: result.data,
     });
 
-    // const firstCateId = (result.data[0] || {}).cate_id;
+    const firstCateId = (result.data[0] || {}).cate_id;
 
-    // if (firstCateId) {
-    //   this.setData({
-    //     tabIndex: firstCateId,
-    //   });
-    // }
+    if (firstCateId) {
+      this.setData({
+        tabIndex: firstCateId,
+      });
+    }
 
     await this.getGoodsList();
     this.getBannerList();
@@ -171,11 +171,11 @@ Page({
     const result = await getGoodsListPageApi(data);
     if (result.code !== 200) return;
 
-    result.data.list.forEach((item) => {
-      item.selectList = item.spec_list.filter((spec) => spec.is_checked == 1);
-      item.spec_list = item.spec_list.filter((spec) => spec.is_checked != 1);
-      item.expand = item.selectList.length == 0 ? true : false;
-    });
+    // result.data.list.forEach((item) => {
+    //   item.selectList = item.spec_list.filter((spec) => spec.is_checked == 1);
+    //   item.spec_list = item.spec_list.filter((spec) => spec.is_checked != 1);
+    //   item.expand = item.selectList.length == 0 ? true : false;
+    // });
 
     this.setData({
       total: result.data.count,

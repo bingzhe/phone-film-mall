@@ -107,12 +107,12 @@
               t-class="goods-img"
               src="{{ rootUrl }}{{ item.goods_img }}"
             ></t-image>
-            <view class="goods-name">{{ item.goods_name }}</view>
+            <!-- <view class="goods-name">{{ item.goods_name }}</view> -->
           </view>
         </view>
         <view class="film-content">
           <view class="film-title">{{ item.cate_name }}</view>
-          <view class="firm-selects">
+          <!-- <view class="firm-selects">
             <view
               class="firm-select"
               wx:for="{{ item.selectList }}"
@@ -120,9 +120,9 @@
             >
               {{ selectSpec.spec_name }}</view
             >
-          </view>
+          </view> -->
           <!-- prettier-ignore-attribute -->
-          <view wx:if="{{item.expand}}" class="phone-modal-list">
+          <view class="phone-modal-list">
             <view
               class="modal {{ modal.is_checked == 1 ? 'select' : '' }}"
               wx:for="{{ item.spec_list }}"
@@ -134,11 +134,11 @@
           </view>
 
           <view class="film-price">
-            <text>零售指导价：¥{{ item.price }}元</text>
+            <text>¥{{ item.price }}</text>
           </view>
         </view>
       </view>
-      <view
+      <!-- <view
         class="toggle-expand"
         data-index="{{ index }}"
         bind:tap="toggleExpand"
@@ -155,7 +155,7 @@
           size="48rpx"
           color="#999999"
         />
-      </view>
+      </view> -->
     </view>
   </view>
 

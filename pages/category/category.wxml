@@ -34,40 +34,18 @@
   >
     <!-- style="white-space: nowrap" -->
     <scroll-view scroll-x="true">
-      <!-- prettier-ignore-attribute -->
-      <view
-        class="second-cate-item {{secondCategorySelected.category_id ===item.category_id?'second-select':''}}"
-        wx:for="{{ secondCategories }}"
-        wx:key="category_id"
-        data-idx="{{ index }}"
-        bindtap="onSecondCategoryClick"
-      >
-        {{ item.cate_name }}
+      <view class="second-cate-wrapper">
+        <!-- prettier-ignore-attribute -->
+        <view
+          class="second-cate-item {{ secondCategorySelected.category_id === item.category_id? 'second-select' : ''}}"
+          wx:for="{{ secondCategories }}"
+          wx:key="category_id"
+          data-idx="{{ index }}"
+          bindtap="onSecondCategoryClick"
+        >
+          {{ item.cate_name }}
+        </view>
       </view>
-
-      <!-- <view
-        class="second-cate-item"
-        wx:for="{{ secondCategories }}"
-        wx:key="category_id"
-      >
-        {{ item.cate_name }}
-      </view>
-
-      <view
-        class="second-cate-item"
-        wx:for="{{ secondCategories }}"
-        wx:key="category_id"
-      >
-        {{ item.cate_name }}
-      </view>
-
-      <view
-        class="second-cate-item"
-        wx:for="{{ secondCategories }}"
-        wx:key="category_id"
-      >
-        {{ item.cate_name }}
-      </view> -->
     </scroll-view>
     <!-- is-link -->
     <!-- url="/pages/goods/list?categoryId={{ categorySelected.category_id }}" -->
