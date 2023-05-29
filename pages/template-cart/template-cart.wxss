@@ -208,6 +208,10 @@
   background-color: #FAFAFA;
   z-index: 999;
 }
+
+.jiesuan-box.iphone-box{
+bottom: 164rpx;
+}
 .jiesuan-box .to-pay-btn {
   text-align: center;
   line-height: 76rpx;

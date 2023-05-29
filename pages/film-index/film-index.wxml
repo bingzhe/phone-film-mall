@@ -27,7 +27,8 @@
 
 <view class="phone-modal-wrapper">
   <view class="modal-wrapper">
-    <text class="tag">本机型号</text>
+    <!-- <text class="tag">本机型号</text> -->
+    <image src="/images/phone.png" style="width:62rpx;height:62rpx;" width="72" height="72"></image>
     <text class="modal">{{ phoneModal }}</text>
   </view>
   <view class="icon-wrapper" bind:tap="handleSearchCus">
@@ -42,6 +43,7 @@
     <t-image
       src="../../../images/search-btn.jpg"
       t-class="t-image__search-btn"
+      shape="circle"
       bind:tap="navToActivityDetail"
     />
     <!-- <t-icon name="chevron-right" size="xl" color="#999" /> -->
@@ -167,8 +169,6 @@
     <view class="empty-tip">暂无该手机型号膜</view>
   </view>
 </view>
-
-<view wx:if="{{ isIphoneX }}" style="height: 20rpx"></view>
 
 <van-popup
   show="{{ popupShow }}"

@@ -201,37 +201,37 @@ Page({
       return;
     }
 
-    const goods_id = e.currentTarget.dataset.id;
-    const cart_list = [
-      {
-        goods_num: 1,
-        goods_id: goods_id,
-      },
-    ];
+    // const goods_id = e.currentTarget.dataset.id;
+    // const cart_list = [
+    //   {
+    //     goods_num: 1,
+    //     goods_id: goods_id,
+    //   },
+    // ];
 
-    const params = {
-      token: wx.getStorageSync("token"),
-      cart_list: JSON.stringify(cart_list),
-    };
+    // const params = {
+    //   token: wx.getStorageSync("token"),
+    //   cart_list: JSON.stringify(cart_list),
+    // };
 
-    const result = await createCartBatch(params);
+    // const result = await createCartBatch(params);
 
-    wx.showToast({
-      title: "加入购物车成功",
-      icon: "success",
-    });
-
-    // if (curGood.stock <= 0) {
-    //   wx.showToast({
-    //     title: "已售罄~",
-    //     icon: "none",
-    //   });
-    //   return;
-    // }
-
-    // this.setData({
-    //   skuCurGoods: curGood,
+    // wx.showToast({
+    //   title: "加入购物车成功",
+    //   icon: "success",
     // });
+
+    if (curGood.stock <= 0) {
+      wx.showToast({
+        title: "已售罄~",
+        icon: "none",
+      });
+      return;
+    }
+
+    this.setData({
+      skuCurGoods: curGood,
+    });
   },
   goodsGoBottom() {
     this.data.page++;

@@ -1,6 +1,6 @@
 /* pages/video/video.wxss */
 page {
-  padding-bottom: 48px;
+  padding-bottom: 80px;
 }
 
 .video-page {

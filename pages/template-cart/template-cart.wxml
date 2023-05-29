@@ -77,7 +77,7 @@
       </view>
     </view>
   </view>
-  <view class="jiesuan-box">
+  <view class="jiesuan-box {{isIphoneX?'iphone-box':''}}" >
     <view class="left-price">
       <view>
         <radio checked="{{ allSelect }}" bindtap="radioAllClick">全选</radio>

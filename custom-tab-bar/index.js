@@ -3,8 +3,8 @@ import { checkLogined } from "../utils/auth.js";
 Component({
   data: {
     selected: 0,
-    color: "#6e6d6b",
-    selectedColor: "#e64340",
+    color: "#707070",
+    selectedColor: "#23b7eb",
     list: [
       {
         pagePath: "/pages/film-index/film-index",

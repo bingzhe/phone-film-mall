@@ -1,11 +1,10 @@
 <!--index.wxml-->
 <import src="../template-cart/template-cart.wxml"></import>
 
-<view wx:if="{{ isIphoneX }}" style="height: 20rpx"></view>
 
 <view class="container">
   <template
     is="{{ goodsList.length > 0 ? 'cart-goods-list' : 'no-goods' }}"
-    data="{{ saveHidden, allSelect, noSelect,shopCarType,goodsList,totalPrice}}"
+    data="{{ saveHidden, allSelect, noSelect,shopCarType,goodsList,totalPrice,isIphoneX}}"
   ></template>
 </view>

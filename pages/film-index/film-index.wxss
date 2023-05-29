@@ -1,5 +1,5 @@
 page {
-  padding-bottom: 48px;
+  padding-bottom: 80px;
 }
 
 .swiper-wrap {
@@ -32,7 +32,8 @@ page {
 
 .phone-modal-wrapper .modal-wrapper {
   display: flex;
-  color: #000;
+  align-items: center;
+  color: #23b7eb;
 }
 
 .phone-modal-wrapper .modal-wrapper .tag {
@@ -80,7 +81,7 @@ page {
 }
 
 .tabs-wrapper {
-  padding: 0 15rpx;
+  padding: 0 10rpx;
   display: flex;
   flex-wrap: wrap;
   background: #f9f9f9;
@@ -100,7 +101,7 @@ page {
   border-color: #f9f9f9;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  margin: 10rpx 5rpx;
+  margin: 10rpx 0rpx;
   padding: 10rpx;
   text-align: center;
   margin-right: 20rpx;
@@ -214,8 +215,8 @@ page {
 .film-icon-wrapper {
   display: flex;
   align-items: center;
-  width: 180rpx;
-  margin-right: 40rpx;
+  width: 160rpx;
+  margin-right: 20rpx;
 }
 
 .film-icon-wrapper .goods-img {
