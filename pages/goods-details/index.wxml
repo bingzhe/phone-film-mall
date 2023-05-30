@@ -2,6 +2,7 @@
   <van-sticky wx:if="{{ createTabs }}">
     <view id="tabs" class="tabs-container">
       <van-tabs
+        id="vanTabs"
         sticky
         bind:click="onTabsChange"
         custom-class=""
@@ -32,13 +33,23 @@
       >
         <swiper-item wx:for="{{ goodsDetail.pics }}" wx:key="id">
           <image
-            src="{{ item }}"
+            wx:if="{{ item.type == 'image' }}"
+            src="{{ item.url }}"
             class="slide-image"
             mode="aspectFill"
             lazy-load="true"
-            bindtap="previewImage2"
             data-url="{{ item }}"
           ></image>
+
+          <!-- bindtap="previewImage2" -->
+          <video
+            wx:if="{{ item.type == 'video' }}"
+            autoplay
+            src="{{ item.url }}"
+            class="slide-image"
+            data-url="{{ item }}"
+          ></video>
+          <!-- bindtap="previewImage2" -->
         </swiper-item>
       </swiper>
     </view>

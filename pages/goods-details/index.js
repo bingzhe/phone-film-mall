@@ -24,6 +24,20 @@ Page({
     shopType: "addShopCar", //购物类型，加入购物车或立即购买，默认为加入购物车
 
     specSelectIndex: 0, // 规格选中的index
+
+    tabs: [
+      {
+        tabs_name: "商品简介",
+        view_id: "swiper-container",
+        topHeight: 0,
+      },
+      {
+        tabs_name: "商品详情",
+        view_id: "goods-des-info",
+        topHeight: 0,
+      },
+    ],
+    active: "商品简介",
   },
   bindscroll(e) {
     if (this.data.tabclicked) {
@@ -101,22 +115,22 @@ Page({
   },
   readConfigVal() {
     // 读取系统参数
-    let tabs = [
-      {
-        tabs_name: "商品简介",
-        view_id: "swiper-container",
-        topHeight: 0,
-      },
-      {
-        tabs_name: "商品详情",
-        view_id: "goods-des-info",
-        topHeight: 0,
-      },
-    ];
-
-    this.setData({
-      tabs,
-    });
+    // let tabs = [
+    //   {
+    //     tabs_name: "商品简介",
+    //     view_id: "swiper-container",
+    //     topHeight: 0,
+    //   },
+    //   {
+    //     tabs_name: "商品详情",
+    //     view_id: "goods-des-info",
+    //     topHeight: 0,
+    //   },
+    // ];
+    // this.setData({
+    //   tabs,
+    // });
+    // this.selectComponent("#vanTabs").resize();
   },
   // async goodsAddition() {
   //   const res = await WXAPI.goodsAddition(this.data.goodsId);
@@ -154,6 +168,11 @@ Page({
         // this.goodsFavCheck();
       }
     });
+  },
+  onReady: function () {
+    setTimeout(() => {
+      this.selectComponent("#vanTabs").resize();
+    }, 500);
   },
   getTopHeightFunction() {
     var that = this;
@@ -193,10 +212,16 @@ Page({
     let buyNumMax = goodsInfo.stock;
 
     goodsInfo.pics = goodsInfo.img_list.map((item) => {
-      return `${BASE_URL}${item}`;
+      let type = "image";
+
+      if (item.substr(-3) == "mp4") {
+        type = "video";
+      }
+
+      return { type, url: `${BASE_URL}${item}` };
     });
 
-    console.log(goodsInfo);
+    // console.log(goodsInfo);
     // goodsInfo.spec_list.forEach((item, i) => {
     //   // item.cart_num = 0;
     //   if (i == 0) {

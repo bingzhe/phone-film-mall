@@ -52,6 +52,13 @@ swiper-item image {
   height: 748rpx;
 }
 
+swiper-item video {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 748rpx;
+}
+
 .goods-info {
   background-color: #fff;
   padding-top: 35rpx;
