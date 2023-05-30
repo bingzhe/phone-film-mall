@@ -26,7 +26,23 @@ Page({
     performance: {}, //推广员
   },
   onLoad() {},
+  onReady: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
+  },
   onShow() {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setMallTab(3);
     }

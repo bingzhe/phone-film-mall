@@ -18,17 +18,15 @@
 }
 
 .to-index-btn {
-
   line-height: 60rpx;
   text-align: center;
   font-size: 28rpx;
 
   width: 140rpx;
   height: 60rpx;
-  background: #FFD43E;
+  background: #ffd43e;
   border-radius: 30px;
   border: 2px solid #393640;
-
 }
 
 .list-top {
@@ -115,8 +113,8 @@
   line-height: 38rpx;
   margin: 8rpx 0 25rpx 0;
   text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .goods-info .text-box .goods-price {
@@ -140,7 +138,7 @@
 .goods-info .text-box .buy-num .jian-btn {
   width: 58rpx;
   height: 100%;
-  background-color: #F2F3F5;
+  background-color: #f2f3f5;
   border-radius: 6rpx;
   line-height: 56rpx;
   font-size: 18px;
@@ -163,7 +161,7 @@
   width: 58rpx;
   height: 100%;
   border-radius: 6rpx;
-  background-color: #F2F3F5;
+  background-color: #f2f3f5;
   line-height: 58rpx;
   font-size: 16px;
   color: #323233;
@@ -184,6 +182,15 @@
   font-size: 24rpx;
   margin: 0 5rpx;
 }
+.goods-info .text-box .buy-num view {
+  width: 68rpx;
+  height: 58rpx;
+  min-height: 58rpx;
+  text-align: center;
+  font-size: 24rpx;
+  margin: 0 5rpx;
+}
+
 .goods-info .img-box .img {
   width: 160rpx;
   height: 160rpx;
@@ -205,19 +212,19 @@
   position: fixed;
   bottom: 96rpx;
   left: 0;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   z-index: 999;
 }
 
-.jiesuan-box.iphone-box{
-bottom: 164rpx;
+.jiesuan-box.iphone-box {
+  bottom: 164rpx;
 }
 .jiesuan-box .to-pay-btn {
   text-align: center;
   line-height: 76rpx;
   width: 200rpx;
   height: 76rpx;
-  background: linear-gradient(270deg, #FF972A 0%, #FF444A 100%);
+  background: linear-gradient(270deg, #ff972a 0%, #ff444a 100%);
   border-radius: 38rpx;
   margin-top: 12rpx;
   margin-right: 20rpx;

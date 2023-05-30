@@ -59,7 +59,7 @@ Component({
       this.setData({
         skuCurGoodsShow: false
       })
-      wx.showTabBar()
+      // wx.showTabBar()
     },
     async initGoodsData(skuCurGoodsBaseInfo) {
       this.setData({

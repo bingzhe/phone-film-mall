@@ -17,6 +17,12 @@ Page({
     totalPrice: 0,
 
     isIphoneX: app.globalData.isIphoneX,
+
+    numPopShow: false,
+    buyNumber: 0,
+    buyNumMin: 0,
+    buyNumMax: 0,
+    curGoods: {},
   },
 
   //获取元素自适应后的实际宽度
@@ -44,11 +50,27 @@ Page({
     this.onShow();
   },
   onShow: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setMallTab(2);
     }
 
     this.shippingCarInfo();
+  },
+  onReady: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
   },
   async shippingCarInfo() {
     const result = await getCartList({ token: wx.getStorageSync("token") });
@@ -286,6 +308,64 @@ Page({
 
     wx.navigateTo({
       url: "/pages/to-pay-order/index?selectCartIds=" + selectCartIds,
+    });
+  },
+
+  openNumPop(e) {
+    const cart_id = e.currentTarget.dataset.key;
+    const goods_id = e.currentTarget.dataset.spec;
+
+    const curGoods = this.data.goodsList.filter(
+      (item) => item.cart_id === cart_id
+    )[0];
+
+    // console.log(curGoods)
+
+    this.setData({
+      curGoods,
+      buyNumber: curGoods.goods_num,
+      buyNumMax: curGoods.stock + curGoods.goods_num,
+      numPopShow: true,
+    });
+  },
+  onNumPopCancel() {
+    // console.log("cancel");
+    this.setData({
+      curGoods: {},
+      buyNumber: 0,
+      buyNumMax: 0,
+      numPopShow: false,
+    });
+  },
+  async onNumPopConfirm() {
+    // console.log("confirm");
+    const token = wx.getStorageSync("token");
+
+    await createCart({
+      token,
+      goods_id: this.data.curGoods.goods_id,
+      goods_num: this.data.buyNumber,
+      cart_id: this.data.curGoods.cart_id,
+    });
+
+    this.onNumPopCancel();
+    this.shippingCarInfo();
+  },
+
+  stepChange(event) {
+    let num = event.detail;
+    const stock = this.data.curGoods.stock + this.data.curGoods.goods_num;
+
+    if (num > stock) {
+      wx.showToast({
+        title: "超出最大库存",
+        icon: "none",
+      });
+      num = stock;
+    }
+
+    this.setData({
+      buyNumber: num,
     });
   },
 });

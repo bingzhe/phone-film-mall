@@ -48,15 +48,25 @@
                 data-index="{{ index }}"
                 >-</view
               >
-              <input
+              <!-- <input
                 type="number"
                 value="{{ item.goods_num }}"
                 data-key="{{ item.cart_id }}"
                 data-spec="{{ item.goods_id }}"
                 bindblur="changeCarNumber"
-              />
+              /> -->
               <view
-                class="jia-btn {{ item.number == curTouchGoodStore ? 'disabled' : ''}}"
+                type="number"
+                value="{{ item.goods_num }}"
+                data-key="{{ item.cart_id }}"
+                data-spec="{{ item.goods_id }}"
+                bindtap="openNumPop"
+              >
+                {{ item.goods_num }}
+              </view>
+              <!-- prettier-ignore-attribute -->
+              <view
+                class="jia-btn {{item.number == curTouchGoodStore ? 'disabled' : ''}}"
                 catchtap="jiaBtnTap"
                 data-index="{{ index }}"
                 >+</view
@@ -77,12 +87,12 @@
       </view>
     </view>
   </view>
-  <view class="jiesuan-box {{isIphoneX?'iphone-box':''}}" >
+  <view class="jiesuan-box {{ isIphoneX ? 'iphone-box' : '' }}">
     <view class="left-price">
       <view>
         <radio checked="{{ allSelect }}" bindtap="radioAllClick">全选</radio>
         <van-button
-          style="margin-left:20rpx"
+          style="margin-left: 20rpx"
           size="small"
           round
           color="linear-gradient(to right, #FF972A, #FF444A)"

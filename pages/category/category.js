@@ -47,12 +47,29 @@ Page({
     this.getCategory();
   },
   onShow() {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
     checkLogined();
 
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setMallTab(1);
     }
   },
+  onReady: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
+  },
+
   async getCategory() {
     wx.showLoading({
       title: "",

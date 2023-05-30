@@ -1,10 +1,29 @@
 <!--index.wxml-->
 <import src="../template-cart/template-cart.wxml"></import>
 
-
 <view class="container">
   <template
     is="{{ goodsList.length > 0 ? 'cart-goods-list' : 'no-goods' }}"
     data="{{ saveHidden, allSelect, noSelect,shopCarType,goodsList,totalPrice,isIphoneX}}"
   ></template>
 </view>
+
+<van-dialog
+  use-slot
+  title="修改购买数量"
+  show="{{ numPopShow }}"
+  show-cancel-button
+  bind:cancel="onNumPopCancel"
+  bind:confirm="onNumPopConfirm"
+>
+  <view style="text-align: center; padding: 30rpx 0 40rpx">
+    <van-stepper
+      value="{{ buyNumber }}"
+      min="{{ buyNumMin }}"
+      max="{{ buyNumMax }}"
+      input-width="48px"
+      button-size="48px"
+      bind:change="stepChange"
+    />
+  </view>
+</van-dialog>

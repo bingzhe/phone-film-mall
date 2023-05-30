@@ -145,13 +145,13 @@ page {
   height: 50rpx;
 }
 
-
-
-
-.van-sidebar-item{
+.van-sidebar-item {
   background-color: #f1eded !important;
 }
 .van-sidebar-item--selected {
-  color:#23b7eb !important;
+  color: #23b7eb !important;
   background-color: #fff !important;
+}
+.van-popup--center {
+  top: 40% !important;
 }

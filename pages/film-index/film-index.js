@@ -72,9 +72,26 @@ Page({
     this.getAnnouncement();
   },
   onShow() {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
+    
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setSearchTab(0);
     }
+  },
+  onReady: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
   },
   onHide() {},
   onUnload() {},

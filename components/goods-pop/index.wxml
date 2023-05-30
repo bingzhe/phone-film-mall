@@ -1,8 +1,7 @@
 <van-popup
   show="{{ skuCurGoodsShow }}"
-  position="bottom"
   round
-  custom-style="padding-top:32rpx;max-height: 80%;padding-bottom: 80px;"
+  custom-style="padding-top:32rpx;max-height: 80%;padding-bottom: 32rpx;"
   bind:close="closeSku"
 >
   <van-card

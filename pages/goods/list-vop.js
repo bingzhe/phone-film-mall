@@ -233,7 +233,7 @@ Page({
     this.setData({
       skuCurGoods: null
     })
-    wx.showTabBar()
+    // wx.showTabBar()
   },
   skuSelect(e) {
     const pid = e.currentTarget.dataset.pid

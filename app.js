@@ -77,21 +77,14 @@ App({
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;
         this.globalData.menuButtonObject = menuButtonObject;
+
+        if (res.safeArea.top > 40) {
+          that.globalData.isIphoneX = true;
+        }
         console.log("navHeight", navHeight);
       },
       fail(err) {
         console.log(err);
-      },
-    });
-
-    //获取设备信息
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res);
-        // iPhone机型有横杆的导航栏高度大于40
-        if (res.safeArea.top > 40) {
-          that.globalData.isIphoneX = true;
-        }
       },
     });
   },

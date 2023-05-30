@@ -22,12 +22,28 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady: function () {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    wx.hideTabBar({
+      fail: function () {
+        setTimeout(function () {
+          wx.hideTabBar();
+        }, 500);
+      },
+    });
+
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setSearchTab(1);
     }

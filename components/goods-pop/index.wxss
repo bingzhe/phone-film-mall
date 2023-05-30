@@ -1,6 +1,6 @@
 .sku-container {
   box-sizing: border-box;
-  width: 100vw;
+  width: 90vw;
   padding: 32rpx 32rpx 0 32rpx;
 }
 .sku-container .sku {
