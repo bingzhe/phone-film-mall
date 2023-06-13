@@ -131,7 +131,7 @@
   box-sizing: border-box;
   text-align: center;
   display: flex;
-  padding: 40rpx 100rpx;
+  padding: 80rpx 100rpx 40rpx;
   width: 600rpx;
 }
 

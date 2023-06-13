@@ -105,7 +105,7 @@
 >
 <view class="radio-wrapper">
   <van-radio-group value="{{ payway }}" bind:change="onPaywayChange">
-    <van-radio name="1">线下支付</van-radio>
+    <!-- <van-radio name="1">线下支付</van-radio> -->
     <van-radio name="2">微信支付</van-radio>
   </van-radio-group>
 </view>

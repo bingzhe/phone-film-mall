@@ -88,3 +88,7 @@
 </view>
 
 <goods-pop skuCurGoodsBaseInfo="{{ skuCurGoods }}"></goods-pop>
+
+<view class="service-icon-wrapper">
+  <van-icon name="phone-circle-o" size="40px" color="#999" bind:click="kefuCallPhone" />
+</view>

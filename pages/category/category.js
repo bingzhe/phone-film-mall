@@ -254,4 +254,9 @@ Page({
     this.data.page++;
     this.getGoodsList();
   },
+  kefuCallPhone() {
+    wx.makePhoneCall({
+      phoneNumber: '15206354555',
+    });
+  },
 });
