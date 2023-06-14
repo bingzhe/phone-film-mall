@@ -79,7 +79,7 @@ Page({
         }, 500);
       },
     });
-    
+
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setSearchTab(0);
     }
@@ -139,6 +139,7 @@ Page({
 
     this.setData({
       // tabIndex: 100,
+      tabIndex: result.data,
       page: 1,
       list: [],
     });
@@ -167,6 +168,7 @@ Page({
       });
     }
 
+    await this.getGoodsCate();
     await this.getGoodsList();
     this.getBannerList();
   },

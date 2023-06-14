@@ -24,6 +24,7 @@ Page({
     avatarUrl: "",
     invitation_id: "",
     performance: {}, //推广员
+    is_yewu: 0,
   },
   onLoad() {},
   onReady: function () {
@@ -63,6 +64,7 @@ Page({
       // mobile: res.data.phone,
       nick: res.data.nikename,
       invitation_id: res.data.invitation_id,
+      is_yewu: res.data.is_yewu,
       avatarUrl,
     });
   },
