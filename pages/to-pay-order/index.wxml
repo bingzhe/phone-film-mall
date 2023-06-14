@@ -33,9 +33,9 @@
             <label class="radio">
               <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
             </label>
-            <label class="radio">
+            <!-- <label class="radio">
               <radio value="zq" checked="{{peisongType == 'zq'}}" /> 自提
-            </label>
+            </label> -->
           </radio-group>
         </view>
       </van-cell>
