@@ -144,7 +144,7 @@ Page({
       list: [],
     });
 
-    this.getGoodsList();
+    // this.getGoodsList();
   },
   async getCateList() {
     const result = await getCateListApi();
