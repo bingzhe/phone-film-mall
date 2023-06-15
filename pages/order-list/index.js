@@ -18,10 +18,10 @@ Page({
         status: 0,
         label: "待付款",
       },
-      {
-        status: 1,
-        label: "待确认",
-      },
+      // {
+      //   status: 1,
+      //   label: "待确认",
+      // },
       {
         status: 2,
         label: "待发货",

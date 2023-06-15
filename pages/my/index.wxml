@@ -20,19 +20,19 @@
 </view>
 <view class="space van-hairline--bottom"></view>
 <van-cell title="我的订单" value="更多" is-link url="/pages/order-list/index" />
-<van-grid clickable column-num="5">
+<van-grid clickable column-num="4">
   <van-grid-item
     icon="balance-list-o"
     text="待付款"
     bindtap="goOrder"
     data-type="0"
   />
-  <van-grid-item
+  <!-- <van-grid-item
     icon="after-sale"
     text="待确认"
     bindtap="goOrder"
     data-type="1"
-  />
+  /> -->
   <van-grid-item
     icon="logistics"
     text="待发货"
@@ -53,8 +53,8 @@
   />
 </van-grid>
 
-<van-cell wx:if="{{is_yewu == 1}}" title="推广员" />
-<van-grid wx:if="{{is_yewu == 1}}" clickable column-num="3">
+<van-cell wx:if="{{ is_yewu == 1 }}" title="推广员" />
+<van-grid wx:if="{{ is_yewu == 1 }}" clickable column-num="3">
   <van-grid-item use-slot bindtap="goPerformanceList" data-type="1">
     <view class="performance-value">{{ performance.yao_num }}</view>
     <view class="performance-label">累计客户</view>
@@ -79,7 +79,11 @@
   </van-grid-item>
 </van-grid>
 
-<van-cell wx:if="{{is_yewu == 1}}" title="邀请ID" value="{{ invitation_id }}" />
+<van-cell
+  wx:if="{{ is_yewu == 1 }}"
+  title="邀请ID"
+  value="{{ invitation_id }}"
+/>
 <van-cell title="收货地址" is-link url="/pages/select-address/index" />
 <van-cell title="修改资料" is-link url="/pages/my/info" />
 <van-cell title="系统设置" is-link url="/pages/my/setting" />
