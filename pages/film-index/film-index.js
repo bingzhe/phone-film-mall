@@ -34,7 +34,7 @@ Page({
 
     phoneModal: "",
 
-    tabIndex: 1,
+    tabIndex: 100,
 
     searchValue: "",
 
@@ -144,17 +144,17 @@ Page({
       list: [],
     });
 
-    // this.getGoodsList();
+    this.getGoodsList();
   },
   async getCateList() {
     const result = await getCateListApi();
 
     if (result.code !== 200) return;
 
-    // result.data.unshift({
-    //   cate_id: 100,
-    //   cate_name: "全部",
-    // });
+    result.data.unshift({
+      cate_id: 100,
+      cate_name: "全部",
+    });
 
     this.setData({
       tabList: result.data,
@@ -168,7 +168,6 @@ Page({
       });
     }
 
-    await this.getGoodsCate();
     await this.getGoodsList();
     this.getBannerList();
   },
