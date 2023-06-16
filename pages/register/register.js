@@ -17,7 +17,7 @@ Page({
     city: "",
     area: "",
     address: "",
-    checked: true,
+    checked: false,
 
     provinces: undefined, // 省份数据数组
     pIndex: 0, //选择的省下标

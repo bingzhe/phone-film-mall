@@ -9,7 +9,7 @@ Page({
     openid: "",
     username: "",
     password: "",
-    checked: true,
+    checked: false,
   },
 
   /**
