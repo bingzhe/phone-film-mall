@@ -63,7 +63,7 @@
       <view class="goods-title">{{ goodsDetail.goods_name }}</view>
     </view>
     <view class="stock-sales-info">
-      <view class="num">库存{{ goodsDetail.stock }}</view>
+      <!-- <view class="num">库存{{ goodsDetail.stock }}</view> -->
       <view class="num">销量{{ goodsDetail.sales }}</view>
     </view>
 
@@ -93,11 +93,11 @@
           <van-stepper
             value="{{ buyNumber }}"
             min="{{ buyNumMin }}"
-            max="{{ buyNumMax }}"
             bind:change="stepChange"
             input-width="40px"
             button-size="32px"
-          ></van-stepper>
+            ></van-stepper>
+            <!-- max="{{ buyNumMax }}" -->
         </view>
       </van-cell>
     </view>

@@ -129,7 +129,7 @@ Page({
       order: 1,
       by: 1,
       page: this.data.page,
-      size: 10,
+      size: 20,
       category_id: this.data.secondCategorySelected.category_id,
     };
 
@@ -238,13 +238,13 @@ Page({
     //   icon: "success",
     // });
 
-    if (curGood.stock <= 0) {
-      wx.showToast({
-        title: "已售罄~",
-        icon: "none",
-      });
-      return;
-    }
+    // if (curGood.stock <= 0) {
+    //   wx.showToast({
+    //     title: "已售罄~",
+    //     icon: "none",
+    //   });
+    //   return;
+    // }
 
     this.setData({
       skuCurGoods: curGood,

@@ -17,10 +17,10 @@
   bind:confirm="onNumPopConfirm"
 >
   <view style="text-align: center; padding: 30rpx 0 40rpx">
+    <!-- max="{{ buyNumMax }}" -->
     <van-stepper
       value="{{ buyNumber }}"
       min="{{ buyNumMin }}"
-      max="{{ buyNumMax }}"
       input-width="48px"
       button-size="48px"
       bind:change="stepChange"

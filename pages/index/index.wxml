@@ -47,7 +47,7 @@
         <image src="{{item.goods_img_url}}" class="image" mode="aspectFill" lazy-load="true" />
       </view>
       <view class="stock-sales-info">
-        <view class="num">库存{{item.stock}}</view>
+        <!-- <view class="num">库存{{item.stock}}</view> -->
         <view class="num">销量{{item.sales}}</view>
       </view>
       <view class="goods-title van-multi-ellipsis--l2">{{item.goods_name}}</view>

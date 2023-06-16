@@ -17,12 +17,12 @@
       <van-stepper 
       value="{{ buyNumber }}"
       min="{{ buyNumMin }}"
-      max="{{ buyNumMax }}"
       input-width="40px"
       button-size="32px"
       bind:change="stepChange"
       />
     </view>
+    <!-- max="{{ buyNumMax }}" -->
   </view>
   <view class="btn">
     <van-button type="danger" block round bind:click="addCarSku">加入购物车</van-button>

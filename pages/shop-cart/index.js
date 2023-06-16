@@ -354,15 +354,15 @@ Page({
 
   stepChange(event) {
     let num = event.detail;
-    const stock = this.data.curGoods.stock + this.data.curGoods.goods_num;
+    // const stock = this.data.curGoods.stock + this.data.curGoods.goods_num;
 
-    if (num > stock) {
-      wx.showToast({
-        title: "超出最大库存",
-        icon: "none",
-      });
-      num = stock;
-    }
+    // if (num > stock) {
+    //   wx.showToast({
+    //     title: "超出最大库存",
+    //     icon: "none",
+    //   });
+    //   num = stock;
+    // }
 
     this.setData({
       buyNumber: num,
