@@ -139,7 +139,7 @@ Page({
 
     this.setData({
       // tabIndex: 100,
-      tabIndex: result.data,
+      // tabIndex: result.data,
       page: 1,
       list: [],
     });
