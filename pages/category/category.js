@@ -136,7 +136,7 @@ Page({
     const result = await getGoodsList(_data);
     wx.hideLoading();
 
-    if (this.data.goods.length == result.data.count && this.data.page != 1) {
+    if (this.data.goods.length >= result.data.count && this.data.page != 1) {
       wx.showToast({
         title: "没有更多了",
         icon: "none",
