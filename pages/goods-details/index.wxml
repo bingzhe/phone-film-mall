@@ -64,7 +64,7 @@
     </view>
     <view class="stock-sales-info">
       <!-- <view class="num">库存{{ goodsDetail.stock }}</view> -->
-      <view class="num">销量{{ goodsDetail.sales }}</view>
+      <!-- <view class="num">销量{{ goodsDetail.sales }}</view> -->
     </view>
 
     <view class="size-label-box2">

@@ -9,7 +9,7 @@
   <view class="filters">
     <view class="item {{orderBy==''?'active':''}}" data-val="" bindtap="filter">综合</view>
     <view class="item {{orderBy=='winsdate_desc'?'active':''}}" data-val="winsdate_desc" bindtap="filter">新品</view>
-    <view class="item {{orderBy=='sale_desc'?'active':''}}" data-val="sale_desc" bindtap="filter">销量</view>
+    <!-- <view class="item {{orderBy=='sale_desc'?'active':''}}" data-val="sale_desc" bindtap="filter">销量</view> -->
     <view class="item {{orderBy=='price_asc'?'active':''}}" data-val="price_asc" bindtap="filter">价格</view>
   </view>
 </van-sticky>

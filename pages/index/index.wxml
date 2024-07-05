@@ -48,7 +48,7 @@
       </view>
       <view class="stock-sales-info">
         <!-- <view class="num">库存{{item.stock}}</view> -->
-        <view class="num">销量{{item.sales}}</view>
+        <!-- <view class="num">销量{{item.sales}}</view> -->
       </view>
       <view class="goods-title van-multi-ellipsis--l2">{{item.goods_name}}</view>
       <!-- <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view> -->
