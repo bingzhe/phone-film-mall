@@ -63,6 +63,8 @@ Page({
     newProductBg: "",
 
     isIphoneX: app.globalData.isIphoneX,
+
+    goodsListLoading: false,
   },
   async onLoad() {
     await this.getDeviceInfo();
@@ -172,6 +174,8 @@ Page({
     this.getBannerList();
   },
   async getGoodsList() {
+    if (this.data.goodsListLoading) return;
+
     const data = {
       // cate_id: this.data.tabIndex,
       page: this.data.page,
@@ -190,19 +194,56 @@ Page({
       data.name = this.data.phoneModal;
     }
 
-    const result = await getGoodsListPageApi(data);
-    if (result.code !== 200) return;
-
-    // result.data.list.forEach((item) => {
-    //   item.selectList = item.spec_list.filter((spec) => spec.is_checked == 1);
-    //   item.spec_list = item.spec_list.filter((spec) => spec.is_checked != 1);
-    //   item.expand = item.selectList.length == 0 ? true : false;
+    // this.setData({
+    //   goodsListLoading: true,
     // });
 
-    this.setData({
-      total: result.data.count,
-      list: this.data.list.concat(result.data.list),
-    });
+    // try {
+    //   const result = await getGoodsListPageApi(data);
+    //   if (result.code !== 200) return;
+
+    //   // result.data.list.forEach((item) => {
+    //   //   item.selectList = item.spec_list.filter((spec) => spec.is_checked == 1);
+    //   //   item.spec_list = item.spec_list.filter((spec) => spec.is_checked != 1);
+    //   //   item.expand = item.selectList.length == 0 ? true : false;
+    //   // });
+
+    //   this.setData({
+    //     total: result.data.count,
+    //     list: this.data.list.concat(result.data.list),
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   this.setData({
+    //     goodsListLoading: false,
+    //   });
+    // }
+
+    this.setData(
+      {
+        goodsListLoading: true,
+      },
+      async () => {
+        try {
+          const result = await getGoodsListPageApi(data);
+          if (result.code !== 200) return;
+
+          // 更新数据列表和总数
+          this.setData({
+            total: result.data.count,
+            list: this.data.list.concat(result.data.list),
+          });
+        } catch (error) {
+          console.error("Failed to fetch goods list:", error);
+        } finally {
+          // 无论成功或失败，加载状态都应设置回false
+          this.setData({
+            goodsListLoading: false,
+          });
+        }
+      }
+    );
   },
 
   toggleExpand(e) {
