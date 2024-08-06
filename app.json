@@ -63,21 +63,8 @@
     "pages/film-video/film-video",
     "pages/performance-list/performance-list"
   ],
-  "requiredPrivateInfos": [
-    "chooseAddress"
-  ],
+  "requiredPrivateInfos": ["chooseAddress"],
   "subpackages": [
-    {
-      "root": "packageStreamMedia",
-      "name": "packageStreamMedia",
-      "pages": [
-        "pages/videoCall/videoCall",
-        "pages/live-anchor/index",
-        "pages/live-anchor/list",
-        "pages/live-client/list",
-        "pages/live-client/client"
-      ]
-    },
     {
       "root": "packageCps",
       "name": "packageCps",

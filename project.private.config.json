@@ -7,6 +7,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/order-list/index",
+          "pathName": "pages/order-list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "home",
           "pathName": "pages/index/index",
           "query": "",
