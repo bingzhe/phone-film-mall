@@ -6,9 +6,9 @@
 // const API_BASE_URL = "https://jrdz.qivan.cn/Api";
 // const API_FILE_URL = "https://jrdz.qivan.cn/Api";
 
-const BASE_URL = "https://kamoniu.shouchuangtx.cn";
-const API_BASE_URL = "https://kamoniu.shouchuangtx.cn/Api";
-const API_FILE_URL = "https://kamoniu.shouchuangtx.cn/Api";
+const BASE_URL = "https://gechen.xinhengda.top";
+const API_BASE_URL = "https://gechen.xinhengda.top/Api";
+const API_FILE_URL = "https://gechen.xinhengda.top/Api";
 
 module.exports = {
   BASE_URL,

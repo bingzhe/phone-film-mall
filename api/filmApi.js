@@ -1,5 +1,5 @@
 // 每次修改 1. appid 2.title 3.url 4.后台添加调用的https 5.分享标题修改
-const rootUrl = "https://kamoniu.shouchuangtx.cn"; // 歌宸型号搜索 (歌宸型号搜索) wx9441a66206aaa235
+const rootUrl = "https://gechen.xinhengda.top"; // 歌宸型号搜索 (歌宸型号搜索) wx9441a66206aaa235
 
 import { request } from "./request";
 
