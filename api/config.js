@@ -8,7 +8,7 @@
 
 const BASE_URL = "https://gechen.qdidesign.com";
 const API_BASE_URL = "https://gechen.qdidesign.com/Api";
-const API_FILE_URL = "ttps://gechen.qdidesign.com/Api";
+const API_FILE_URL = "https://gechen.qdidesign.com/Api";
 
 module.exports = {
   BASE_URL,
